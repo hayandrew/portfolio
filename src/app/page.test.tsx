@@ -7,18 +7,14 @@ describe("HomePage Component", () => {
   it("renders large center-aligned heading and subtitle", () => {
     const { container } = render(<HomePage />);
     expect(container.querySelector(".logoContainer")).toBeInTheDocument();
-    expect(screen.getByText(/> SOFTWARE ENGINEERING LEADER/i)).toBeInTheDocument();
+    expect(screen.getByText(/SOFTWARE ENGINEERING LEADER_/i)).toBeInTheDocument();
   });
 
-  it("renders stacked menu items with indices", () => {
+  it("renders stacked menu items", () => {
     render(<HomePage />);
-    expect(screen.getByText("Dossier Profile")).toBeInTheDocument();
-    expect(screen.getByText("[01]")).toBeInTheDocument();
-    expect(screen.getByText("Career Timeline")).toBeInTheDocument();
-    expect(screen.getByText("[02]")).toBeInTheDocument();
-    expect(screen.getByText("Projects Gallery")).toBeInTheDocument();
-    expect(screen.getByText("[03]")).toBeInTheDocument();
-    expect(screen.getByText("Routing Channels")).toBeInTheDocument();
-    expect(screen.getByText("[04]")).toBeInTheDocument();
+    expect(screen.getByText("ABOUT_")).toBeInTheDocument();
+    expect(screen.getByText("EXPERIENCE_")).toBeInTheDocument();
+    expect(screen.getByText("LABS_")).toBeInTheDocument();
+    expect(screen.getByText("CONTACT_")).toBeInTheDocument();
   });
 });

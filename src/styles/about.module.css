@@ -124,7 +124,7 @@
 }
 
 .bioText {
-  font-family: var(--font-copse);
+  font-family: var(--font-mono), sans-serif;
   font-size: 1.05rem;
   line-height: 1.7;
   color: var(--text-secondary);

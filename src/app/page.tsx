@@ -9,9 +9,8 @@ export default function HomePage() {
   const triggerConsole = () => {
     window.dispatchEvent(new Event("open-system-console"));
   };
-
   return (
-    <div className="page-container" style={{ paddingTop: 0 }}>
+    <div className={`page-container ${styles.homePage}`} style={{ paddingTop: 0 }}>
       <div className="content-wrapper">
         <div className={styles.centeredWrapper}>
           {/* Large Center-Aligned Interactive Name Logo */}

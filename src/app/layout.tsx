@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import { Copse, Ubuntu } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import "@/styles/globals.css";
 import Navigation from "@/components/Navigation";
 import SystemConsole from "@/components/SystemConsole";
 
-const copse = Copse({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-copse",
-});
-
 const ubuntu = Ubuntu({
-  weight: "300",
+  weight: ["300", "400"],
   subsets: ["latin"],
   variable: "--font-mono",
 });
@@ -30,7 +24,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${copse.variable} ${ubuntu.variable}`}
+      className={`${ubuntu.variable}`}
       suppressHydrationWarning
       data-scroll-behavior="smooth"
     >

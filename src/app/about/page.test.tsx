@@ -16,7 +16,7 @@ describe("AboutPage Component", () => {
     expect(screen.getByText("IDENTIFIER")).toBeInTheDocument();
     expect(screen.getByText("ANDY HAY")).toBeInTheDocument();
     expect(screen.getByText("DESIGNATION")).toBeInTheDocument();
-    expect(screen.getByText("SENIOR SOFTWARE ENGINEER")).toBeInTheDocument();
+    expect(screen.getByText("SOFTWARE ENGINEERING MANAGER")).toBeInTheDocument();
     expect(screen.getByText("LOCATION NODE")).toBeInTheDocument();
     expect(screen.getByText("NEW YORK, NY")).toBeInTheDocument();
   });

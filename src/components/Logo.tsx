@@ -39,7 +39,7 @@ const SVG_PATHS = {
   d: `M43.01,22.32v3.69c0,1.29-.14,2.52-.42,3.69-.2.89-.42,1.66-.67,2.33-.24.67-.54,1.27-.91,1.81-.36.54-.81,1.05-1.33,1.51-.52.46-1.17.92-1.94,1.36-.24.16-.89.37-1.94.63-1.05.26-2.35.58-3.9.94-1.55.36-3.29.75-5.2,1.15-1.92.4-3.87.8-5.87,1.18-2,.38-3.97.77-5.93,1.15-1.96.38-3.73.73-5.32,1.03-1.59.3-2.94.57-4.05.79-1.11.22-1.84.35-2.21.39-.69-7.38-1.33-14.7-1.94-21.96C.79,14.76.32,7.42,0,0c3.39.12,6.75.25,10.1.39,3.35.14,6.73.33,10.16.57.89.08,2.19.18,3.9.3,1.71.12,3.5.29,5.35.51,1.85.22,3.6.49,5.23.82,1.63.32,2.81.73,3.54,1.21.93.69,1.75,1.61,2.48,2.78.73,1.17,1.25,2.32,1.57,3.45.16.52.28,1.34.36,2.45.08,1.11.14,2.29.18,3.54.04,1.25.07,2.46.09,3.63.02,1.17.03,2.06.03,2.66ZM27.95,23.11c0-.44-.01-.92-.03-1.42-.02-.5-.05-.98-.09-1.42-.08-.64-.19-1.32-.33-2.03-.14-.71-.33-1.39-.57-2.06-.24-.67-.54-1.29-.91-1.88-.36-.58-.81-1.1-1.33-1.54-.28-.24-.97-.43-2.06-.57-1.09-.14-2.28-.24-3.57-.3-1.29-.06-2.5-.1-3.63-.12-1.13-.02-1.86-.03-2.18-.03h-2.48c.32,3.15.61,6.24.88,9.29.26,3.05.49,6.14.7,9.29.77-.04,1.86-.15,3.3-.33,1.43-.18,2.89-.42,4.39-.73,1.49-.3,2.88-.69,4.17-1.15,1.29-.46,2.22-1.02,2.78-1.66.44-.48.72-1,.82-1.54.1-.54.15-1.14.15-1.79Z`,
   y: `M41.5,32.24c0,1.45-.22,2.97-.67,4.57-.44,1.59-1.09,3.09-1.94,4.48-.85,1.39-1.89,2.6-3.12,3.63-1.23,1.03-2.61,1.7-4.14,2.03-.6.12-1.32.22-2.15.3-.83.08-1.68.14-2.57.18-.89.04-1.76.08-2.63.12-.87.04-1.6.06-2.21.06-3.47.16-6.94.25-10.41.27-3.47.02-6.96.03-10.47.03-.16-1.65-.31-3.29-.45-4.9-.14-1.61-.33-3.27-.57-4.96,2.78-.12,5.56-.25,8.32-.39,2.76-.14,5.54-.31,8.32-.51.6-.04,1.28-.06,2.03-.06s1.51-.02,2.3-.06c.79-.04,1.55-.09,2.3-.15.75-.06,1.4-.15,1.97-.27.24-.04.53-.11.88-.21.34-.1.66-.24.94-.42.28-.18.52-.39.73-.63.2-.24.3-.54.3-.91,0-.85-.09-1.78-.27-2.81s-.31-1.95-.39-2.75c-3.02.28-6.06.55-9.1.82-3.05.26-6.1.39-9.17.39-2.1,0-3.77-.59-5.02-1.78-1.25-1.19-2.16-2.75-2.72-4.69-.12-.44-.23-.98-.33-1.6-.1-.62-.18-1.27-.24-1.94-.06-.67-.11-1.32-.15-1.97-.04-.64-.08-1.19-.12-1.63-.2-2.66-.35-5.28-.45-7.86C.17,6.01.08,3.39,0,.73c1.94.2,3.88.38,5.84.54,1.96.16,3.9.3,5.84.42,0,1.9.05,3.9.15,6.02.1,2.12.35,4.08.76,5.9.2.97.58,1.81,1.15,2.51.56.71,1.24,1.29,2.03,1.75.79.46,1.63.81,2.54,1.03.91.22,1.82.33,2.75.33,1.09,0,2.18-.11,3.27-.33,1.09-.22,2.14-.49,3.15-.82-.16-3.02-.29-6.01-.39-8.95-.1-2.94-.29-5.91-.57-8.89,1.21-.04,2.42-.09,3.63-.15,1.21-.06,2.42-.09,3.63-.09,1.9,0,3.81.18,5.75.54,0,1.73.03,3.47.09,5.2.06,1.73.13,3.47.21,5.2.08.81.15,1.62.21,2.45.06.83.11,1.64.15,2.45.16,2.74.42,5.48.79,8.2.36,2.72.54,5.46.54,8.2Z`,
   h: `M37.39,44.77l-12.04.3c-.08-2.62-.14-5.22-.18-7.8-.04-2.58-.1-5.18-.18-7.8l-11.37.54c-.04.4-.06.8-.06,1.18v1.12c0,2.26.09,4.51.27,6.75s.37,4.47.57,6.69c-.81.04-1.62.07-2.45.09-.83.02-1.64.03-2.45.03-1.57,0-3.16-.03-4.75-.09-1.59-.06-3.18-.09-4.75-.09.08-3.75.18-7.46.3-11.13.12-3.67.22-7.38.3-11.13.08-3.67.13-7.3.15-10.89.02-3.59.05-7.2.09-10.83h10.1c.32,3.02.54,6.04.67,9.04.12,3,.3,6.02.54,9.04,1.94-.04,3.85-.06,5.75-.06s3.83-.02,5.81-.06L24.32.06c.56-.04,1.12-.06,1.66-.06h1.66c1.61,0,3.2.04,4.75.12,1.55.08,3.12.26,4.69.54.2,7.38.28,14.73.24,22.05-.04,7.32-.02,14.67.06,22.05Z`,
-  underscore: `M38.29 46.92a542.091 542.091 0 0 1-16.22.24c-3.11 0-6.21.09-9.32.27s-6.21.39-9.32.63l-.24-7.86 9.59-.24c3.21-.08 6.4-.12 9.59-.12q3.93 0 7.77.06l7.71.12.42 6.9Z`
+  underscore: `M38.29 46.92a542.091 542.091 0 0 1-16.22.24c-3.11 0-6.21.09-9.32.27s-6.21.39-9.32.63l-.24-7.86 9.59-.24c3.21-.08 6.4-.12 9.59-.12q3.93 0 7.77.06l7.71.12.42 6.9Z`,
 };
 
 const LETTERS: Letter[] = [
@@ -77,7 +77,7 @@ const LETTERS: Letter[] = [
   },
   {
     id: "h",
-    w: 40,
+    w: 42,
     h: 48,
     xOff: 0,
     yOff: 0,
@@ -85,7 +85,7 @@ const LETTERS: Letter[] = [
   },
   {
     id: "a2",
-    w: 39,
+    w: 41,
     h: 42,
     xOff: 0,
     yOff: 0,
@@ -177,446 +177,537 @@ function animateElementTranslateY(
   el._activeAnimId = requestAnimationFrame(step);
 }
 
+// Animation helper using scale
+function animateElementScale(
+  element: HTMLElement | null,
+  startScale: number,
+  targetScale: number,
+  duration: number,
+  easingFn: (t: number) => number,
+  callback?: () => void,
+): void {
+  if (!element) return;
+
+  const htmlElement = element;
+  const el = element as AnimatedHTMLElement;
+  if (el._activeAnimId) {
+    cancelAnimationFrame(el._activeAnimId);
+  }
+
+  const distance = targetScale - startScale;
+  const startTime = performance.now();
+
+  function step(now: number): void {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easedProgress = easingFn(progress);
+    const currentScale = startScale + distance * easedProgress;
+    htmlElement.style.transform = `scale(${currentScale})`;
+
+    if (progress < 1) {
+      el._activeAnimId = requestAnimationFrame(step);
+    } else {
+      htmlElement.style.transform = `scale(${targetScale})`;
+      delete el._activeAnimId;
+      if (callback) callback();
+    }
+  }
+  el._activeAnimId = requestAnimationFrame(step);
+}
+
 export default function Logo() {
   const containerRef = useRef<HTMLUListElement>(null);
   const shadowsRef = useRef<HTMLUListElement>(null);
   const outlineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    const shadows = shadowsRef.current;
-    const logoOutline: HTMLDivElement | null = outlineRef.current;
+    try {
+      const container = containerRef.current;
+      const shadows = shadowsRef.current;
+      const logoOutline: HTMLDivElement | null = outlineRef.current;
 
-    if (!container) return;
+      if (!container) return;
 
-    // Clear existing inner HTML to avoid duplicate rendering on hot reloads
-    container.innerHTML = "";
-    if (shadows) shadows.innerHTML = "";
+      // Clear existing inner HTML to avoid duplicate rendering on hot reloads
+      container.innerHTML = "";
+      if (shadows) shadows.innerHTML = "";
 
-    const mobile =
-      window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent);
+      const mobile =
+        /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent,
+        );
 
-    const positions: LogoPosition[] = [];
-    const touches: TouchObj[] = [];
-    let currentNode: HTMLLIElement | number | null = null;
-    let winHeight = window.innerHeight;
-    let touchy = 0;
-    const topPos = 0;
-    let scale = 0;
+      const positions: LogoPosition[] = [];
+      const touches: TouchObj[] = [];
+      let currentNode: HTMLLIElement | number | null = null;
+      let winHeight = window.innerHeight;
+      let touchy = 0;
+      const topPos = 0;
+      let scale = 1.5;
 
-    // Event listener declarations for safe cleanup
-    let handleTouchStart: ((event: TouchEvent) => void) | null = null;
-    let handleTouchMove: ((event: TouchEvent) => void) | null = null;
-    let handleTouchEnd: ((event: TouchEvent) => void) | null = null;
-    let handleOrientationChange: (() => void) | null = null;
-    let handleResize: (() => void) | null = null;
-    const handleMouseEnters: Array<{ el: Element; listener: () => void }> = [];
+      // Event listener declarations for safe cleanup
+      let handleTouchStart: ((event: TouchEvent) => void) | null = null;
+      let handleTouchMove: ((event: TouchEvent) => void) | null = null;
+      let handleTouchEnd: ((event: TouchEvent) => void) | null = null;
+      let handleOrientationChange: (() => void) | null = null;
+      let handleResize: (() => void) | null = null;
+      const handleMouseEnters: Array<{ el: Element; listener: () => void }> =
+        [];
 
-    const logoObj = {
-      init: function (): void {
-        let count = 0;
-        let width = 0;
-        const glow = 10;
+      const logoObj = {
+        init: function (): void {
+          let count = 0;
+          let width = 0;
+          const glow = 10;
 
-        scale = mobile ? 1 : 1;
+          // Dynamically compute scale on mobile to fit the viewport width
+          const screenWidth = window.innerWidth || 375;
+          scale = mobile
+            ? Math.max(0.4, Math.min(1, (screenWidth - 32) / 358))
+            : 1;
 
-        for (let i = 0, l = LETTERS.length; i < l; i++) {
-          count =
-            i === 0
-              ? 0
-              : count + scale * LETTERS[i - 1].w - scale * LETTERS[i].xOff;
-          width += scale * LETTERS[i].w - scale * LETTERS[i].xOff;
+          for (let i = 0, l = LETTERS.length; i < l; i++) {
+            count =
+              i === 0
+                ? 0
+                : count + scale * LETTERS[i - 1].w - scale * LETTERS[i].xOff;
+            width += scale * LETTERS[i].w - scale * LETTERS[i].xOff;
 
-          const li = document.createElement("li");
-          li.className = "letters " + LETTERS[i].id;
-          li.style.left = count + "px";
-          li.style.top = topPos + scale * LETTERS[i].yOff + "px";
+            const li = document.createElement("li");
+            li.className = "letters " + LETTERS[i].id;
+            li.style.left = count + "px";
+            li.style.top = topPos + scale * LETTERS[i].yOff + "px";
 
-          // Create main SVG element and path dynamically
-          const svgEl = document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "svg",
-          );
-          svgEl.setAttribute(
-            "width",
-            String(scale * LETTERS[i].w + LETTERS[i].xOff),
-          );
-          svgEl.setAttribute(
-            "height",
-            String(scale * LETTERS[i].h + LETTERS[i].yOff),
-          );
-
-          const pathEl = document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "path",
-          );
-          pathEl.setAttribute("d", LETTERS[i].svg);
-          pathEl.setAttribute("fill", "#fff");
-          pathEl.setAttribute("stroke", "none");
-          pathEl.setAttribute("transform", "scale(" + scale + ")");
-
-          svgEl.appendChild(pathEl);
-          li.appendChild(svgEl);
-          container.appendChild(li);
-
-          let shadowli: HTMLLIElement | null = null;
-          let shadowSvgEl: SVGSVGElement | null = null;
-
-          if (shadows) {
-            shadowli = document.createElement("li");
-            shadowli.className = "letters " + LETTERS[i].id;
-            shadowli.style.left = count - glow + "px";
-            shadowli.style.top = topPos + scale * LETTERS[i].yOff - glow + "px";
-
-            // Create shadow SVG element and path dynamically
-            shadowSvgEl = document.createElementNS(
+            // Create main SVG element and path dynamically
+            const svgEl = document.createElementNS(
               "http://www.w3.org/2000/svg",
               "svg",
             );
-            shadowSvgEl.setAttribute(
-              "width",
-              String(scale * (LETTERS[i].w + glow) + LETTERS[i].xOff),
-            );
-            shadowSvgEl.setAttribute(
-              "height",
-              String(scale * (LETTERS[i].h + glow) + LETTERS[i].yOff),
-            );
+            const svgW = scale * LETTERS[i].w + LETTERS[i].xOff;
+            const svgH = scale * LETTERS[i].h + LETTERS[i].yOff;
+            svgEl.setAttribute("width", String(svgW));
+            svgEl.setAttribute("height", String(svgH));
+            svgEl.setAttribute("viewBox", `0 0 ${svgW} ${svgH}`);
 
-            const shadowPathEl = document.createElementNS(
+            const pathEl = document.createElementNS(
               "http://www.w3.org/2000/svg",
               "path",
             );
-            shadowPathEl.setAttribute("d", LETTERS[i].svg);
-            shadowPathEl.setAttribute("fill", "#5b0009");
-            shadowPathEl.setAttribute("stroke", "none");
-            shadowPathEl.setAttribute("transform", "scale(" + scale + ")");
+            pathEl.setAttribute("d", LETTERS[i].svg);
+            pathEl.setAttribute("fill", "#fff");
+            pathEl.setAttribute("stroke", "none");
+            pathEl.setAttribute("transform", "scale(" + scale + ")");
 
-            // Replicate Raphael's glow using modern CSS drop-shadow filter
-            shadowPathEl.style.filter = "drop-shadow(0px 0px 10px #5b0009)";
-            shadowPathEl.style.opacity = "0.7";
+            svgEl.appendChild(pathEl);
+            li.appendChild(svgEl);
+            container.appendChild(li);
 
-            shadowSvgEl.appendChild(shadowPathEl);
-            shadowli.appendChild(shadowSvgEl);
-            shadows.appendChild(shadowli);
-          }
+            let shadowli: HTMLLIElement | null = null;
+            let shadowSvgEl: SVGSVGElement | null = null;
 
-          // if (!mobile) {
-          positions.push({
-            node: li,
-            shadow: shadowli,
-            svg: svgEl,
-            svgShadow: shadowSvgEl,
-          });
-          // } else {
-          // positions.push({ node: li, svg: svgEl, shadow: null });
-          // }
-        }
+            if (shadows) {
+              shadowli = document.createElement("li");
+              shadowli.className = "letters " + LETTERS[i].id;
+              shadowli.style.left = count - glow + "px";
+              shadowli.style.top =
+                topPos + scale * LETTERS[i].yOff - glow + "px";
 
-        container.style.width = width + "px";
-        container.style.opacity = "1";
-
-        if (shadows) {
-          shadows.style.width = width + "px";
-          shadows.style.opacity = "1";
-        }
-
-        if (logoOutline) {
-          logoOutline.style.top = topPos + "px";
-        }
-
-        this.bindEvents();
-        this.initPositions();
-      },
-
-      registerPositions: function (li: LogoPosition): void {
-        const node = li.node;
-        if (!node) return;
-        const rect = node.getBoundingClientRect();
-        const scrollLeft =
-          window.pageXOffset || document.documentElement.scrollLeft;
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-
-        li.left = rect.left + scrollLeft;
-        li.top = rect.top + scrollTop;
-        li.right = li.left + node.offsetWidth;
-        li.bottom = li.top + node.offsetHeight;
-      },
-
-      initPositions: function (): void {
-        for (let i = 0, l = positions.length; i < l; i++) {
-          const node = positions[i].node;
-          const orig = parseFloat(node.style.top) || 0;
-
-          positions[i].state = 0;
-          positions[i].orig = orig;
-          positions[i].anim = false;
-          this.registerPositions(positions[i]);
-        }
-      },
-
-      animateLetter: function (
-        li: LogoPosition,
-        reset?: boolean,
-        drop?: boolean,
-      ): void {
-        if (reset) li.anim = false;
-
-        if (li.anim === false) {
-          const duration = 1200;
-          let animHeight = 0;
-
-          if (drop) {
-            animHeight = window.innerHeight - (li.orig || 0);
-          } else {
-            animHeight = window.innerHeight - 275;
-          }
-
-          li.anim = true;
-
-          if (li.state === 0 || drop) {
-            animateElementTranslateY(
-              li.node,
-              animHeight,
-              duration,
-              easeOutBounce,
-              () => {
-                this.registerPositions(li);
-                li.anim = false;
-                li.state = 1;
-              },
-            );
-
-            if (!mobile && li.shadow) {
-              animateElementTranslateY(
-                li.shadow,
-                animHeight + 5,
-                duration,
-                easeOutBounce,
+              // Create shadow SVG element and path dynamically
+              shadowSvgEl = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "svg",
               );
-            }
-          } else if (li.state === 1) {
-            animateElementTranslateY(
-              li.node,
-              0,
-              duration,
-              easeOutElastic,
-              () => {
-                this.registerPositions(li);
-                li.anim = false;
-                li.state = 0;
-              },
-            );
+              shadowSvgEl.setAttribute(
+                "width",
+                String(scale * (LETTERS[i].w + glow) + LETTERS[i].xOff),
+              );
+              shadowSvgEl.setAttribute(
+                "height",
+                String(scale * (LETTERS[i].h + glow) + LETTERS[i].yOff),
+              );
 
-            if (!mobile && li.shadow) {
-              animateElementTranslateY(li.shadow, -5, duration, easeOutElastic);
+              const shadowPathEl = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "path",
+              );
+              shadowPathEl.setAttribute("d", LETTERS[i].svg);
+              shadowPathEl.setAttribute("fill", "#5b0009");
+              shadowPathEl.setAttribute("stroke", "none");
+              shadowPathEl.setAttribute("transform", "scale(" + scale + ")");
+
+              // Replicate Raphael's glow using modern CSS drop-shadow filter
+              shadowPathEl.style.filter = "drop-shadow(0px 0px 10px #5b0009)";
+              shadowPathEl.style.opacity = "0.7";
+
+              shadowSvgEl.appendChild(shadowPathEl);
+              shadowli.appendChild(shadowSvgEl);
+              shadows.appendChild(shadowli);
             }
+
+            // if (!mobile) {
+            positions.push({
+              node: li,
+              shadow: shadowli,
+              svg: svgEl,
+              svgShadow: shadowSvgEl,
+            });
+            // } else {
+            // positions.push({ node: li, svg: svgEl, shadow: null });
+            // }
           }
-        }
-      },
 
-      bindEvents: function (): void {
-        if (mobile) {
-          handleTouchStart = (event: TouchEvent) => {
-            event.preventDefault();
-            const allTouches = event.touches;
-            for (let i = 0; i < allTouches.length; i++) {
-              this.recordTouch(allTouches[i]);
-            }
-          };
+          container.style.width = width + "px";
+          container.style.transform = "translateX(-50%) scale(1)";
+          container.style.opacity = "1";
 
-          handleTouchMove = (event: TouchEvent) => {
-            event.preventDefault();
-            const allTouches = event.touches;
-            for (let i = 0; i < allTouches.length; i++) {
-              this.moveTouch(allTouches[i]);
-            }
-          };
+          if (shadows) {
+            shadows.style.width = width + "px";
+            shadows.style.transform = "translateX(-50%) scale(1)";
+            shadows.style.opacity = "1";
+          }
 
-          handleTouchEnd = (event: TouchEvent) => {
-            event.preventDefault();
-            touches.length = 0;
-          };
+          if (logoOutline) {
+            logoOutline.style.top = topPos + "px";
+          }
 
-          document.body.addEventListener("touchstart", handleTouchStart, {
-            passive: false,
-          });
-          document.body.addEventListener("touchmove", handleTouchMove, {
-            passive: false,
-          });
-          document.body.addEventListener("touchend", handleTouchEnd, {
-            passive: false,
-          });
+          this.bindEvents();
+          this.initPositions();
+        },
 
-          handleOrientationChange = () => {
-            for (let i = 0; i < positions.length; i++) {
-              if (positions[i].state === 1) {
-                this.animateLetter(positions[i], true);
+        registerPositions: function (li: LogoPosition): void {
+          const node = li.node;
+          if (!node) return;
+          const rect = node.getBoundingClientRect();
+          const scrollLeft =
+            window.pageXOffset || document.documentElement.scrollLeft;
+          const scrollTop =
+            window.pageYOffset || document.documentElement.scrollTop;
+
+          li.left = rect.left + scrollLeft;
+          li.top = rect.top + scrollTop;
+          li.right = li.left + node.offsetWidth;
+          li.bottom = li.top + node.offsetHeight;
+        },
+
+        initPositions: function (): void {
+          for (let i = 0, l = positions.length; i < l; i++) {
+            const node = positions[i].node;
+            const orig = parseFloat(node.style.top) || 0;
+
+            positions[i].state = 0;
+            positions[i].orig = orig;
+            positions[i].anim = false;
+            this.registerPositions(positions[i]);
+          }
+        },
+
+        animateLetter: function (
+          li: LogoPosition,
+          reset?: boolean,
+          drop?: boolean,
+        ): void {
+          if (reset) li.anim = false;
+
+          if (li.anim === false) {
+            if (mobile) {
+              li.anim = true;
+              // Bounces larger, then returns to normal scale
+              const durationUp = 300;
+              const durationDown = 500;
+              animateElementScale(
+                li.node,
+                1,
+                1.4,
+                durationUp,
+                easeOutBounce,
+                () => {
+                  animateElementScale(
+                    li.node,
+                    1.4,
+                    1,
+                    durationDown,
+                    easeOutElastic,
+                    () => {
+                      li.anim = false;
+                      li.state = 0;
+                    },
+                  );
+                },
+              );
+            } else {
+              const duration = 1200;
+              let animHeight = 0;
+
+              if (drop) {
+                animHeight = window.innerHeight - (li.orig || 0);
+              } else {
+                animHeight = window.innerHeight - 275;
+              }
+
+              li.anim = true;
+
+              if (li.state === 0 || drop) {
+                animateElementTranslateY(
+                  li.node,
+                  animHeight,
+                  duration,
+                  easeOutBounce,
+                  () => {
+                    this.registerPositions(li);
+                    li.anim = false;
+                    li.state = 1;
+                  },
+                );
+
+                if (!mobile && li.shadow) {
+                  animateElementTranslateY(
+                    li.shadow,
+                    animHeight + 5,
+                    duration,
+                    easeOutBounce,
+                  );
+                }
+              } else if (li.state === 1) {
+                animateElementTranslateY(
+                  li.node,
+                  0,
+                  duration,
+                  easeOutElastic,
+                  () => {
+                    this.registerPositions(li);
+                    li.anim = false;
+                    li.state = 0;
+                  },
+                );
+
+                if (!mobile && li.shadow) {
+                  animateElementTranslateY(
+                    li.shadow,
+                    -5,
+                    duration,
+                    easeOutElastic,
+                  );
+                }
               }
             }
-          };
-          window.addEventListener(
-            "orientationchange",
-            handleOrientationChange,
-            false,
-          );
-        } else {
-          let timer: ReturnType<typeof setTimeout> | null = null;
-          winHeight = window.innerHeight;
+          }
+        },
 
-          const lettersElements = container.querySelectorAll(".letters");
-          lettersElements.forEach((el) => {
-            const listener = () => {
+        bindEvents: function (): void {
+          if (mobile) {
+            handleTouchStart = (event: TouchEvent) => {
+              event.preventDefault();
+              const allTouches = event.touches;
+              for (let i = 0; i < allTouches.length; i++) {
+                this.recordTouch(allTouches[i]);
+              }
+            };
+
+            handleTouchMove = (event: TouchEvent) => {
+              event.preventDefault();
+              const allTouches = event.touches;
+              for (let i = 0; i < allTouches.length; i++) {
+                this.moveTouch(allTouches[i]);
+              }
+            };
+
+            handleTouchEnd = (event: TouchEvent) => {
+              event.preventDefault();
+              touches.length = 0;
+            };
+
+            container.addEventListener("touchstart", handleTouchStart, {
+              passive: false,
+            });
+            container.addEventListener("touchmove", handleTouchMove, {
+              passive: false,
+            });
+            container.addEventListener("touchend", handleTouchEnd, {
+              passive: false,
+            });
+
+            handleOrientationChange = () => {
               for (let i = 0; i < positions.length; i++) {
-                const node = positions[i].node;
-                if (node === el) {
-                  this.animateLetter(positions[i]);
-                  return;
+                if (positions[i].state === 1) {
+                  this.animateLetter(positions[i], true);
                 }
               }
             };
-            el.addEventListener("mouseenter", listener);
-            handleMouseEnters.push({ el, listener });
-          });
+            window.addEventListener(
+              "orientationchange",
+              handleOrientationChange,
+              false,
+            );
+          } else {
+            let timer: ReturnType<typeof setTimeout> | null = null;
+            winHeight = window.innerHeight;
 
-          handleResize = () => {
-            const _winHeight = winHeight;
-
-            if (timer !== null) {
-              clearTimeout(timer);
-            }
-            timer = setTimeout(() => {
-              winHeight = window.innerHeight;
-
-              const easing =
-                _winHeight > winHeight ? "easeOutElastic" : "easeOutBounce";
-              const easingFn =
-                easing === "easeOutElastic" ? easeOutElastic : easeOutBounce;
-              const reset = winHeight - _winHeight;
-              for (let i = 0; i < positions.length; i++) {
-                if (positions[i].state === 1) {
-                  let currentY = 0;
-                  const transform = positions[i].node.style.transform;
-                  if (transform) {
-                    const match = transform.match(/translateY\(([^)]+)px\)/);
-                    if (match) currentY = parseFloat(match[1]) || 0;
+            const lettersElements = container.querySelectorAll(".letters");
+            lettersElements.forEach((el) => {
+              const listener = () => {
+                for (let i = 0; i < positions.length; i++) {
+                  const node = positions[i].node;
+                  if (node === el) {
+                    this.animateLetter(positions[i]);
+                    return;
                   }
-                  animateElementTranslateY(
-                    positions[i].node,
-                    currentY + reset,
-                    1200,
-                    easingFn,
-                  );
+                }
+              };
+              el.addEventListener("mouseenter", listener);
+              handleMouseEnters.push({ el, listener });
+            });
 
-                  if (!mobile && positions[i].shadow) {
-                    let currentShadowY = 0;
-                    const shadowTransform =
-                      positions[i].shadow!.style.transform;
-                    if (shadowTransform) {
-                      const match = shadowTransform.match(
-                        /translateY\(([^)]+)px\)/,
-                      );
-                      if (match) currentShadowY = parseFloat(match[1]) || 0;
+            handleResize = () => {
+              const _winHeight = winHeight;
+
+              if (timer !== null) {
+                clearTimeout(timer);
+              }
+              timer = setTimeout(() => {
+                winHeight = window.innerHeight;
+
+                const easing =
+                  _winHeight > winHeight ? "easeOutElastic" : "easeOutBounce";
+                const easingFn =
+                  easing === "easeOutElastic" ? easeOutElastic : easeOutBounce;
+                const reset = winHeight - _winHeight;
+                for (let i = 0; i < positions.length; i++) {
+                  if (positions[i].state === 1) {
+                    let currentY = 0;
+                    const transform = positions[i].node.style.transform;
+                    if (transform) {
+                      const match = transform.match(/translateY\(([^)]+)px\)/);
+                      if (match) currentY = parseFloat(match[1]) || 0;
                     }
                     animateElementTranslateY(
-                      positions[i].shadow,
-                      currentShadowY + reset,
+                      positions[i].node,
+                      currentY + reset,
                       1200,
                       easingFn,
                     );
+
+                    if (!mobile && positions[i].shadow) {
+                      let currentShadowY = 0;
+                      const shadowTransform =
+                        positions[i].shadow!.style.transform;
+                      if (shadowTransform) {
+                        const match = shadowTransform.match(
+                          /translateY\(([^)]+)px\)/,
+                        );
+                        if (match) currentShadowY = parseFloat(match[1]) || 0;
+                      }
+                      animateElementTranslateY(
+                        positions[i].shadow,
+                        currentShadowY + reset,
+                        1200,
+                        easingFn,
+                      );
+                    }
                   }
                 }
-              }
-            }, 300);
-          };
+              }, 300);
+            };
 
-          window.addEventListener("resize", handleResize);
-        }
-      },
+            window.addEventListener("resize", handleResize);
+          }
+        },
 
-      recordTouch: function (touch: Touch): void {
-        if (this.newTouch(touch)) {
-          const touchx = touch.pageX;
-          touchy = touch.pageY;
-          const t = { touch: touch };
-          touches.push(t);
+        recordTouch: function (touch: Touch): void {
+          this.initPositions();
 
-          this.comparePositions(touchx, touchy);
-        }
-      },
-
-      moveTouch: function (touch: Touch): void {
-        for (let i = 0; i < touches.length; i++) {
-          if (touches[i].touch.identifier === touch.identifier) {
+          if (this.newTouch(touch)) {
             const touchx = touch.pageX;
             touchy = touch.pageY;
+            const t = { touch: touch };
+            touches.push(t);
 
             this.comparePositions(touchx, touchy);
           }
-        }
-      },
+        },
 
-      comparePositions: function (touchx: number, touchy: number): void {
-        let limitLeft = 0;
+        moveTouch: function (touch: Touch): void {
+          for (let i = 0; i < touches.length; i++) {
+            if (touches[i].touch.identifier === touch.identifier) {
+              const touchx = touch.pageX;
+              touchy = touch.pageY;
 
-        for (let j = 0, l = positions.length; j < l; j++) {
-          limitLeft =
-            j === l - 1 ? positions[j].right || 0 : positions[j + 1].left || 0;
-
-          if (
-            touchx >= (positions[j].left || 0) &&
-            touchx <= limitLeft &&
-            touchy >= (positions[j].top || 0) &&
-            touchy <= (positions[j].bottom || 0)
-          ) {
-            if (currentNode !== positions[j].node && !positions[j].anim) {
-              currentNode = positions[j].node;
-              this.animateLetter(positions[j]);
-              return;
+              this.comparePositions(touchx, touchy);
             }
-          } else {
-            currentNode = 0;
           }
-        }
-      },
+        },
 
-      newTouch: function (touch: Touch): boolean {
-        for (let i = 0; i < touches.length; i++) {
-          if (touches[i].touch.identifier === touch.identifier) {
-            return false;
+        comparePositions: function (touchx: number, touchy: number): void {
+          let limitLeft = 0;
+
+          for (let j = 0, l = positions.length; j < l; j++) {
+            limitLeft =
+              j === l - 1
+                ? positions[j].right || 0
+                : positions[j + 1].left || 0;
+
+            if (
+              touchx >= (positions[j].left || 0) &&
+              touchx <= limitLeft &&
+              touchy >= (positions[j].top || 0) &&
+              touchy <= (positions[j].bottom || 0)
+            ) {
+              if (currentNode !== positions[j].node && !positions[j].anim) {
+                currentNode = positions[j].node;
+                this.animateLetter(positions[j]);
+                return;
+              }
+            } else {
+              currentNode = 0;
+            }
           }
+        },
+
+        newTouch: function (touch: Touch): boolean {
+          for (let i = 0; i < touches.length; i++) {
+            if (touches[i].touch.identifier === touch.identifier) {
+              return false;
+            }
+          }
+          return true;
+        },
+      };
+
+      const logo = logoObj;
+      logo.init();
+
+      // Clean up event listeners on unmount to avoid memory leaks
+      return () => {
+        if (handleTouchStart && container) {
+          container.removeEventListener("touchstart", handleTouchStart);
         }
-        return true;
-      },
-    };
-
-    const logo = logoObj;
-    logo.init();
-
-    // Clean up event listeners on unmount to avoid memory leaks
-    return () => {
-      if (handleTouchStart) {
-        document.body.removeEventListener("touchstart", handleTouchStart);
-      }
-      if (handleTouchMove) {
-        document.body.removeEventListener("touchmove", handleTouchMove);
-      }
-      if (handleTouchEnd) {
-        document.body.removeEventListener("touchend", handleTouchEnd);
-      }
-      if (handleOrientationChange) {
-        window.removeEventListener(
-          "orientationchange",
-          handleOrientationChange,
+        if (handleTouchMove && container) {
+          container.removeEventListener("touchmove", handleTouchMove);
+        }
+        if (handleTouchEnd && container) {
+          container.removeEventListener("touchend", handleTouchEnd);
+        }
+        if (handleOrientationChange) {
+          window.removeEventListener(
+            "orientationchange",
+            handleOrientationChange,
+          );
+        }
+        if (handleResize) {
+          window.removeEventListener("resize", handleResize);
+        }
+        handleMouseEnters.forEach(({ el, listener }) => {
+          el.removeEventListener("mouseenter", listener);
+        });
+      };
+    } catch (err: any) {
+      console.error(err);
+      if (typeof window !== "undefined") {
+        alert(
+          "Error in Logo useEffect: " + err.message + "\nStack: " + err.stack,
         );
       }
-      if (handleResize) {
-        window.removeEventListener("resize", handleResize);
-      }
-      handleMouseEnters.forEach(({ el, listener }) => {
-        el.removeEventListener("mouseenter", listener);
-      });
-    };
+      return () => {};
+    }
   }, []);
 
   return (

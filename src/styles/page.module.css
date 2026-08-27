@@ -342,57 +342,21 @@
 .stackedMenuItem {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: rgba(8, 12, 20, 0.6);
-  border: 1px solid var(--border-color);
-  padding: 1rem 1.5rem;
-  border-radius: 6px;
+  padding: 0.5rem 1rem;
   font-family: var(--font-mono);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(4px);
-}
-
-.stackedMenuItem::before {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  width: 6px;
-  height: 6px;
-  border-top: 1.5px solid transparent;
-  border-left: 1.5px solid transparent;
-  transition: border-color 0.3s;
-}
-
-.stackedMenuItem::after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  right: -1px;
-  width: 6px;
-  height: 6px;
-  border-bottom: 1.5px solid transparent;
-  border-right: 1.5px solid transparent;
-  transition: border-color 0.3s;
+  background: transparent;
+  border: none;
 }
 
 .stackedMenuItem:hover {
-  border-color: rgba(0, 240, 255, 0.3);
-  box-shadow: 0 5px 20px rgba(0, 240, 255, 0.05);
-  background: rgba(0, 240, 255, 0.02);
   transform: translateY(-2px);
 }
 
-.stackedMenuItem:hover::before {
-  border-top-color: var(--accent-cyan);
-  border-left-color: var(--accent-cyan);
-}
-
-.stackedMenuItem:hover::after {
-  border-bottom-color: var(--accent-cyan);
-  border-right-color: var(--accent-cyan);
+.stackedMenuItem:hover .menuLabel {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 10px var(--accent-cyan-glow);
 }
 
 .menuIndex {
@@ -403,7 +367,7 @@
 
 .menuLabel {
   color: #ffffff;
-  font-size: 0.95rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -515,4 +479,12 @@
   border-radius: 50%;
   background: var(--accent-green);
   box-shadow: 0 0 8px var(--accent-green-glow);
+}
+
+.homePage {
+  background-image: url("/images/backgrounds/home.png");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }

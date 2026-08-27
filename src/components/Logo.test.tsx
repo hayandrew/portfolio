@@ -19,14 +19,14 @@ describe("Logo Component", () => {
 
     expect(container.querySelector(".logoContainer")).toBeInTheDocument();
     expect(container.querySelector(".logo")).toBeInTheDocument();
-    expect(container.querySelector(".shadows")).toBeInTheDocument();
+    expect(container.querySelector(".shadows")).not.toBeInTheDocument();
   });
 
   it("creates HTML list items and SVG paths for each letter in desktop view", () => {
     const { container } = render(<Logo />);
 
     const letters = container.querySelectorAll(".logo .letters");
-    expect(letters.length).toBe(7);
+    expect(letters.length).toBe(8);
 
     // Check that each letter li contains an svg and path
     letters.forEach((letter) => {
@@ -36,15 +36,7 @@ describe("Logo Component", () => {
     });
 
     const shadows = container.querySelectorAll(".shadows .letters");
-    expect(shadows.length).toBe(7);
-    shadows.forEach((shadow) => {
-      const svg = shadow.querySelector("svg");
-      expect(svg).toBeInTheDocument();
-      const path = svg?.querySelector("path");
-      expect(path).toBeInTheDocument();
-      // Drop shadow CSS filter should be applied
-      expect(path?.style.filter).toContain("drop-shadow");
-    });
+    expect(shadows.length).toBe(0);
   });
 
   it("creates HTML list items for each letter without shadows in mobile view", () => {
@@ -59,7 +51,7 @@ describe("Logo Component", () => {
     const { container } = render(<Logo />);
 
     const letters = container.querySelectorAll(".logo .letters");
-    expect(letters.length).toBe(7);
+    expect(letters.length).toBe(8);
 
     const shadows = container.querySelectorAll(".shadows .letters");
     expect(shadows.length).toBe(0);
@@ -83,8 +75,8 @@ describe("Logo Component", () => {
       configurable: true,
     });
 
-    const addSpy = vi.spyOn(document.body, "addEventListener");
-    const removeSpy = vi.spyOn(document.body, "removeEventListener");
+    const addSpy = vi.spyOn(HTMLUListElement.prototype, "addEventListener");
+    const removeSpy = vi.spyOn(HTMLUListElement.prototype, "removeEventListener");
 
     const { unmount } = render(<Logo />);
 
