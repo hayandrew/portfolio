@@ -6,7 +6,7 @@ import ExperiencePage from "./page";
 describe("ExperiencePage Component", () => {
   it("renders Hero component", () => {
     render(<ExperiencePage />);
-    expect(screen.getByRole("heading", { name: "EXPERIENCE_TIMELINE" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "EXPERIENCE" })).toBeInTheDocument();
   });
 
   it("renders all timeline experience cards with their company details", () => {

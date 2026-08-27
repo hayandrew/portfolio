@@ -71,8 +71,8 @@ const menuItems: MenuItem[] = [
     ),
   },
   {
-    label: "projects",
-    path: "/projects",
+    label: "labs",
+    path: "/labs",
     icon: (
       <svg
         className="w-4 h-4 mr-2"

@@ -6,7 +6,7 @@ import AboutPage from "./page";
 describe("AboutPage Component", () => {
   it("renders status bar and main headings", () => {
     render(<AboutPage />);
-    expect(screen.getByRole("heading", { name: "ABOUT_DOSSIER" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "ABOUT ME" })).toBeInTheDocument();
     expect(screen.getByText("SYSTEM_BIO_DATA")).toBeInTheDocument();
     expect(screen.getByText("SKILLS_RATING_MATRIX")).toBeInTheDocument();
   });

@@ -6,23 +6,59 @@ import styles from "@/styles/page.module.css";
 import Logo from "@/components/Logo";
 
 export default function HomePage() {
+  const [isLogoReady, setIsLogoReady] = React.useState(false);
+  const [showContent, setShowContent] = React.useState(false);
+
   const triggerConsole = () => {
     window.dispatchEvent(new Event("open-system-console"));
   };
+
+  // Wait for the loader to fade out (500ms) before fading in the homepage content
+  React.useEffect(() => {
+    if (isLogoReady) {
+      const timer = setTimeout(() => {
+        setShowContent(true);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isLogoReady]);
+
   return (
-    <div className={`page-container ${styles.homePage}`} style={{ paddingTop: 0 }}>
+    <div
+      className={`page-container ${styles.homePage}`}
+      style={{ paddingTop: 0 }}
+    >
       <div className="content-wrapper">
         <div className={styles.centeredWrapper}>
           {/* Large Center-Aligned Interactive Name Logo */}
           <div className={styles.heroNameContainer}>
-            <Logo />
-            <div className={styles.interactiveSubtitle}>
+            <Logo onReady={() => setIsLogoReady(true)} />
+            <div
+              className={`${styles.interactiveSubtitle} ${
+                showContent ? styles.contentVisible : styles.contentHidden
+              }`}
+            >
               SOFTWARE ENGINEERING LEADER_
+            </div>
+
+            {/* Loader displayed during Logo zoom-in */}
+            <div
+              className={`${styles.loader} ${
+                isLogoReady ? styles.loaderFadeOut : ""
+              }`}
+            >
+              <span className={styles.loaderText}>INITIALIZING SYSTEM_</span>
+              <div className={styles.loaderBar}></div>
             </div>
           </div>
 
           {/* Stacked Menu Items */}
-          <nav className={styles.menuStack} aria-label="Main Navigation">
+          <nav
+            className={`${styles.menuStack} ${
+              showContent ? styles.contentVisible : styles.contentHidden
+            }`}
+            aria-label="Main Navigation"
+          >
             <Link href="/about" className={styles.stackedMenuItem}>
               <div className={styles.menuLabel}>ABOUT_</div>
             </Link>
@@ -31,7 +67,7 @@ export default function HomePage() {
               <div className={styles.menuLabel}>EXPERIENCE_</div>
             </Link>
 
-            <Link href="/projects" className={styles.stackedMenuItem}>
+            <Link href="/labs" className={styles.stackedMenuItem}>
               <div className={styles.menuLabel}>LABS_</div>
             </Link>
 

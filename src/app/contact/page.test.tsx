@@ -6,7 +6,7 @@ import ContactPage from "./page";
 describe("ContactPage Component", () => {
   it("renders status bar and transmission console labels", () => {
     render(<ContactPage />);
-    expect(screen.getByRole("heading", { name: "CONTACT_ROUTING" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "CONTACT ME" })).toBeInTheDocument();
     expect(screen.getByText("MESSAGE TRANSMISSION CONSOLE")).toBeInTheDocument();
     expect(screen.getByLabelText(/sender_id/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/route_path/i)).toBeInTheDocument();

@@ -6,7 +6,7 @@ import ProjectsPage from "./page";
 describe("ProjectsPage Component", () => {
   it("renders Hero component and filter console options", () => {
     render(<ProjectsPage />);
-    expect(screen.getByRole("heading", { name: "PROJECTS_REPOSITORY" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "LABS" })).toBeInTheDocument();
     expect(screen.getByText("SELECT REPO_TYPE:")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "[ALL]" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "[WEB]" })).toBeInTheDocument();

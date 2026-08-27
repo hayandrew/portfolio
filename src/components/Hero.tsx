@@ -12,28 +12,28 @@ export default function Hero({ section }: HeroProps) {
     switch (section) {
       case "about":
         return {
-          title: "ABOUT_DOSSIER",
+          title: "ABOUT ME",
           subtitle: "System Node: Biometric & Technical Specs",
           color: "var(--accent-amber)",
           glow: "var(--accent-amber-glow)",
         };
       case "experience":
         return {
-          title: "EXPERIENCE_TIMELINE",
+          title: "EXPERIENCE",
           subtitle: "System History: Professional Chronology",
           color: "var(--accent-green)",
           glow: "var(--accent-green-glow)",
         };
       case "projects":
         return {
-          title: "PROJECTS_REPOSITORY",
+          title: "LABS",
           subtitle: "System Showcase: Open Source & Hardware Nodes",
           color: "var(--accent-cyan)",
           glow: "var(--accent-cyan-glow)",
         };
       case "contact":
         return {
-          title: "CONTACT_ROUTING",
+          title: "CONTACT ME",
           subtitle: "System Channels: Direct Payload Dispatch",
           color: "var(--accent-pink)",
           glow: "var(--accent-pink-glow)",

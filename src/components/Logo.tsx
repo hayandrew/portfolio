@@ -215,7 +215,7 @@ function animateElementScale(
   el._activeAnimId = requestAnimationFrame(step);
 }
 
-export default function Logo() {
+export default function Logo({ onReady }: { onReady?: () => void } = {}) {
   const containerRef = useRef<HTMLUListElement>(null);
   const shadowsRef = useRef<HTMLUListElement>(null);
   const outlineRef = useRef<HTMLDivElement>(null);
@@ -315,52 +315,38 @@ export default function Logo() {
             if (shadows) {
               shadowli = document.createElement("li");
               shadowli.className = "letters " + LETTERS[i].id;
-              shadowli.style.left = count - glow + "px";
-              shadowli.style.top =
-                topPos + scale * LETTERS[i].yOff - glow + "px";
+              shadowli.style.left = count + "px";
+              shadowli.style.top = topPos + scale * LETTERS[i].yOff + "px";
 
               // Create shadow SVG element and path dynamically
               shadowSvgEl = document.createElementNS(
                 "http://www.w3.org/2000/svg",
                 "svg",
               );
-              shadowSvgEl.setAttribute(
-                "width",
-                String(scale * (LETTERS[i].w + glow) + LETTERS[i].xOff),
-              );
-              shadowSvgEl.setAttribute(
-                "height",
-                String(scale * (LETTERS[i].h + glow) + LETTERS[i].yOff),
-              );
+              shadowSvgEl.setAttribute("width", String(svgW));
+              shadowSvgEl.setAttribute("height", String(svgH));
+              shadowSvgEl.setAttribute("viewBox", `0 0 ${svgW} ${svgH}`);
 
               const shadowPathEl = document.createElementNS(
                 "http://www.w3.org/2000/svg",
                 "path",
               );
               shadowPathEl.setAttribute("d", LETTERS[i].svg);
-              shadowPathEl.setAttribute("fill", "#5b0009");
+              shadowPathEl.setAttribute("fill", "rgba(0, 240, 255, 0.15)");
               shadowPathEl.setAttribute("stroke", "none");
               shadowPathEl.setAttribute("transform", "scale(" + scale + ")");
-
-              // Replicate Raphael's glow using modern CSS drop-shadow filter
-              shadowPathEl.style.filter = "drop-shadow(0px 0px 10px #5b0009)";
-              shadowPathEl.style.opacity = "0.7";
 
               shadowSvgEl.appendChild(shadowPathEl);
               shadowli.appendChild(shadowSvgEl);
               shadows.appendChild(shadowli);
             }
 
-            // if (!mobile) {
             positions.push({
               node: li,
-              shadow: shadowli,
+              shadow: null, // Keep the shadow placeholder static (don't animate it)
               svg: svgEl,
-              svgShadow: shadowSvgEl,
+              svgShadow: null,
             });
-            // } else {
-            // positions.push({ node: li, svg: svgEl, shadow: null });
-            // }
           }
 
           container.style.width = width + "px";
@@ -383,6 +369,10 @@ export default function Logo() {
 
           this.bindEvents();
           this.initPositions();
+
+          setTimeout(() => {
+            if (onReady) onReady();
+          }, 1200);
         },
 
         registerPositions: function (li: LogoPosition): void {
@@ -430,6 +420,7 @@ export default function Logo() {
           scale = Math.max(0.4, Math.min(1.3, targetScale));
 
           const lettersElements = container.querySelectorAll(".letters");
+          const shadowElements = shadows ? shadows.querySelectorAll(".letters") : null;
 
           for (let i = 0, l = LETTERS.length; i < l; i++) {
             count =
@@ -439,27 +430,50 @@ export default function Logo() {
             width += scale * LETTERS[i].w - scale * LETTERS[i].xOff;
 
             const li = lettersElements[i] as HTMLLIElement;
-            if (!li) continue;
+            if (li) {
+              li.style.left = count + "px";
+              li.style.top = topPos + scale * LETTERS[i].yOff + "px";
 
-            li.style.left = count + "px";
-            li.style.top = topPos + scale * LETTERS[i].yOff + "px";
+              const svgEl = li.querySelector("svg");
+              if (svgEl) {
+                const svgW = scale * LETTERS[i].w + LETTERS[i].xOff;
+                const svgH = scale * LETTERS[i].h + LETTERS[i].yOff;
+                svgEl.setAttribute("width", String(svgW));
+                svgEl.setAttribute("height", String(svgH));
+                svgEl.setAttribute("viewBox", `0 0 ${svgW} ${svgH}`);
 
-            const svgEl = li.querySelector("svg");
-            if (svgEl) {
-              const svgW = scale * LETTERS[i].w + LETTERS[i].xOff;
-              const svgH = scale * LETTERS[i].h + LETTERS[i].yOff;
-              svgEl.setAttribute("width", String(svgW));
-              svgEl.setAttribute("height", String(svgH));
-              svgEl.setAttribute("viewBox", `0 0 ${svgW} ${svgH}`);
+                const pathEl = svgEl.querySelector("path");
+                if (pathEl) {
+                  pathEl.setAttribute("transform", "scale(" + scale + ")");
+                }
+              }
+            }
 
-              const pathEl = svgEl.querySelector("path");
-              if (pathEl) {
-                pathEl.setAttribute("transform", "scale(" + scale + ")");
+            const shadowli = shadowElements ? (shadowElements[i] as HTMLLIElement) : null;
+            if (shadowli) {
+              shadowli.style.left = count + "px";
+              shadowli.style.top = topPos + scale * LETTERS[i].yOff + "px";
+
+              const shadowSvgEl = shadowli.querySelector("svg");
+              if (shadowSvgEl) {
+                const svgW = scale * LETTERS[i].w + LETTERS[i].xOff;
+                const svgH = scale * LETTERS[i].h + LETTERS[i].yOff;
+                shadowSvgEl.setAttribute("width", String(svgW));
+                shadowSvgEl.setAttribute("height", String(svgH));
+                shadowSvgEl.setAttribute("viewBox", `0 0 ${svgW} ${svgH}`);
+
+                const shadowPathEl = shadowSvgEl.querySelector("path");
+                if (shadowPathEl) {
+                  shadowPathEl.setAttribute("transform", "scale(" + scale + ")");
+                }
               }
             }
           }
 
           container.style.width = width + "px";
+          if (shadows) {
+            shadows.style.width = width + "px";
+          }
           if (container.parentElement) {
             container.parentElement.style.height = scale * 50 + "px";
           }
@@ -476,86 +490,57 @@ export default function Logo() {
           if (reset) li.anim = false;
 
           if (li.anim === false) {
-            if (mobile) {
-              li.anim = true;
-              // Bounces larger, then returns to normal scale
-              const durationUp = 300;
-              const durationDown = 500;
-              animateElementScale(
-                li.node,
-                4,
-                1.4,
-                durationUp,
-                easeOutBounce,
-                () => {
-                  animateElementScale(
-                    li.node,
-                    1.4,
-                    4,
-                    durationDown,
-                    easeOutElastic,
-                    () => {
-                      li.anim = false;
-                      li.state = 0;
-                    },
-                  );
-                },
-              );
-            } else {
-              const duration = 1200;
-              let animHeight = 0;
+            li.anim = true;
+            const rect = li.node.getBoundingClientRect();
+            const bottomY = window.innerHeight - rect.top + 50;
+            const topY = -(rect.top + rect.height + 50);
 
-              if (drop) {
-                animHeight = window.innerHeight - (li.orig || 0);
-              } else {
-                animHeight = window.innerHeight - 275;
-              }
+            const dropDuration = 350;
+            const returnDuration = 850;
 
-              li.anim = true;
+            // Phase 1: Drop off the bottom of the screen
+            animateElementTranslateY(
+              li.node,
+              bottomY,
+              dropDuration,
+              (t) => t * t, // easeInQuad
+              () => {
+                // Phase 2 (instant): Teleport to above the top of the viewport
+                li.node.style.transform = `translateY(${topY}px)`;
+                if (li.shadow) {
+                  li.shadow.style.transform = `translateY(${topY}px)`;
+                }
 
-              if (li.state === 0 || drop) {
+                // Phase 3: Return from the top of the screen to original place (0) with bounce
                 animateElementTranslateY(
                   li.node,
-                  animHeight,
-                  duration,
+                  0,
+                  returnDuration,
                   easeOutBounce,
                   () => {
                     this.registerPositions(li);
                     li.anim = false;
-                    li.state = 1;
                   },
                 );
 
-                if (!mobile && li.shadow) {
+                if (li.shadow) {
                   animateElementTranslateY(
                     li.shadow,
-                    animHeight + 5,
-                    duration,
+                    0,
+                    returnDuration,
                     easeOutBounce,
                   );
                 }
-              } else if (li.state === 1) {
-                animateElementTranslateY(
-                  li.node,
-                  0,
-                  duration,
-                  easeOutElastic,
-                  () => {
-                    this.registerPositions(li);
-                    li.anim = false;
-                    li.state = 0;
-                  },
-                );
+              },
+            );
 
-                if (!mobile && li.shadow) {
-                  animateElementTranslateY(
-                    li.shadow,
-                    -5,
-                    duration,
-                    easeOutElastic,
-                  );
-                }
-              }
+            if (li.shadow) {
+              animateElementTranslateY(
+                li.shadow,
+                bottomY + 5,
+                dropDuration,
+                (t) => t * t,
+              );
             }
           }
         },
@@ -790,7 +775,7 @@ export default function Logo() {
     <div className="logoContainer">
       {/* <div className="logo-outline" ref={outlineRef}></div> */}
       <ul className="logo" ref={containerRef}></ul>
-      {/* <ul className="shadows" ref={shadowsRef}></ul> */}
+      <ul className="shadows" ref={shadowsRef}></ul>
     </div>
   );
 }

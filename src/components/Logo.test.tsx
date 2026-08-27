@@ -19,7 +19,7 @@ describe("Logo Component", () => {
 
     expect(container.querySelector(".logoContainer")).toBeInTheDocument();
     expect(container.querySelector(".logo")).toBeInTheDocument();
-    expect(container.querySelector(".shadows")).not.toBeInTheDocument();
+    expect(container.querySelector(".shadows")).toBeInTheDocument();
   });
 
   it("creates HTML list items and SVG paths for each letter in desktop view", () => {
@@ -36,7 +36,7 @@ describe("Logo Component", () => {
     });
 
     const shadows = container.querySelectorAll(".shadows .letters");
-    expect(shadows.length).toBe(0);
+    expect(shadows.length).toBe(8);
   });
 
   it("creates HTML list items for each letter without shadows in mobile view", () => {
@@ -54,7 +54,7 @@ describe("Logo Component", () => {
     expect(letters.length).toBe(8);
 
     const shadows = container.querySelectorAll(".shadows .letters");
-    expect(shadows.length).toBe(0);
+    expect(shadows.length).toBe(8);
   });
 
   it("triggers hover/mouseenter animation in desktop view", () => {
