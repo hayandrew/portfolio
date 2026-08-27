@@ -224,7 +224,7 @@ a {
 /* Footer Link Styles */
 footer a {
   transition: color 0.2s;
-  color: #444;
+  color: #666;
 }
 footer a:hover {
   color: var(--accent-green) !important;
@@ -254,13 +254,14 @@ footer a:hover {
   align-items: center;
   gap: 1rem;
   font-size: 0.8rem;
-  color: #444;
+  color: #666;
   font-family: var(--font-mono);
 }
 
 .footerLinks {
   display: flex;
   gap: 1.5rem;
+  color: #666;
 }
 
 /* Interactive Logo Styles */

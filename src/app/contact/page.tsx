@@ -1,7 +1,40 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import styles from "@/styles/contact.module.css";
+
+// Determine environment and use appropriate keys (matching earlthemonster defaults)
+const isDevelopment =
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname.includes(".test") ||
+    window.location.hostname.includes(".local") ||
+    window.location.hostname.includes("vercel.app") ||
+    window.location.hostname.includes("netlify.app") ||
+    window.location.hostname === "localhost:8000" ||
+    window.location.hostname === "localhost:3000");
+
+const RECAPTCHA_SITE_KEY =
+  (isDevelopment
+    ? process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY_DEV
+    : process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY_PROD) || "";
+
+
+declare global {
+  interface Window {
+    grecaptcha?: {
+      render: (
+        container: HTMLElement,
+        options: { sitekey: string; theme?: "light" | "dark" },
+      ) => number;
+      getResponse: (widgetId: number) => string;
+      reset: (widgetId: number) => void;
+    };
+    onRecaptchaLoad?: () => void;
+  }
+}
 
 export default function ContactPage() {
   const [senderName, setSenderName] = useState("");
@@ -10,20 +43,132 @@ export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "transmitting" | "success">(
     "idle",
   );
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const pathname = usePathname();
+  const recaptchaContainerRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<number | null>(null);
+  const scriptRef = useRef<HTMLScriptElement | null>(null);
+
+  useEffect(() => {
+    const cleanupRecaptcha = () => {
+      // Remove reCAPTCHA badge and iframes
+      const recaptchaElements = document.querySelectorAll(
+        '.grecaptcha-badge, iframe[src*="recaptcha"]',
+      );
+      recaptchaElements.forEach((element) => {
+        if (element.parentNode) {
+          element.parentNode.removeChild(element);
+        }
+      });
+
+      // Remove reCAPTCHA script
+      if (scriptRef.current?.parentNode) {
+        scriptRef.current.parentNode.removeChild(scriptRef.current);
+      }
+      scriptRef.current = null;
+      widgetIdRef.current = null;
+      window.grecaptcha = undefined;
+      window.onRecaptchaLoad = undefined;
+    };
+
+    if (pathname === "/contact") {
+      const loadRecaptcha = () => {
+        // Don't load if already loaded
+        if (window.grecaptcha || scriptRef.current) {
+          return;
+        }
+
+        // Set up the callback for when reCAPTCHA is ready
+        window.onRecaptchaLoad = () => {
+          // Only render if container exists and hasn't been rendered yet
+          if (
+            recaptchaContainerRef.current &&
+            window.grecaptcha &&
+            widgetIdRef.current === null
+          ) {
+            try {
+              widgetIdRef.current = window.grecaptcha.render(
+                recaptchaContainerRef.current,
+                {
+                  sitekey: RECAPTCHA_SITE_KEY,
+                  theme: "dark",
+                },
+              );
+            } catch (error) {
+              console.error("Error rendering reCAPTCHA:", error);
+            }
+          }
+        };
+
+        const script = document.createElement("script");
+        script.src = `https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad`;
+        script.async = true;
+        script.defer = true;
+        document.body.appendChild(script);
+        scriptRef.current = script;
+      };
+
+      loadRecaptcha();
+      return cleanupRecaptcha;
+    }
+  }, [pathname]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMsg(null);
+
     if (!senderName || !routeEmail || !payloadMessage) return;
+
+    if (!window.grecaptcha || widgetIdRef.current === null) {
+      setErrorMsg("reCAPTCHA loader not initialized.");
+      return;
+    }
+
+    const token = window.grecaptcha.getResponse(widgetIdRef.current);
+    if (!token) {
+      setErrorMsg("Please complete reCAPTCHA verification.");
+      return;
+    }
 
     setStatus("transmitting");
 
-    // Simulate cyber network dispatch latency
-    setTimeout(() => {
+    try {
+      const form = new FormData();
+      form.append("name", senderName);
+      form.append("email", routeEmail);
+      form.append("message", payloadMessage);
+      form.append("g-recaptcha-response", token);
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: form,
+      });
+
+      let data;
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        throw new Error("Server returned an invalid response");
+      }
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to route transmission");
+      }
+
       setStatus("success");
       setSenderName("");
       setRouteEmail("");
       setPayloadMessage("");
-    }, 1500);
+    } catch (err) {
+      console.error("Form submission error:", err);
+      setErrorMsg(err instanceof Error ? err.message : "Failed to route transmission");
+      setStatus("idle");
+      if (window.grecaptcha && widgetIdRef.current !== null) {
+        window.grecaptcha.reset(widgetIdRef.current);
+      }
+    }
   };
 
   return (
@@ -42,11 +187,28 @@ export default function ContactPage() {
                 </div>
                 <div className={styles.terminalStatus}>
                   <div className={styles.statusIndicator} />
-                  <span>DISPATCHER READY</span>
+                  <span>
+                    {status === "transmitting"
+                      ? "DISPATCHING PAYLOAD..."
+                      : status === "success"
+                        ? "TRANSMISSION NOMINAL"
+                        : "DISPATCHER READY"}
+                  </span>
                 </div>
               </div>
 
               <div className={styles.terminalFormBody}>
+                {errorMsg && (
+                  <div className={styles.errorPanel}>
+                    <div className={styles.errorHeader}>
+                      <span>[TRANSMISSION ERROR]</span>
+                    </div>
+                    <div className={styles.errorDesc}>
+                      {errorMsg}
+                    </div>
+                  </div>
+                )}
+
                 {status === "success" && (
                   <div className={styles.successPanel}>
                     <div className={styles.successHeader}>
@@ -57,7 +219,10 @@ export default function ContactPage() {
                       Node response code 202 ACCEPTED. Thank you for connecting.
                     </div>
                     <button
-                      onClick={() => setStatus("idle")}
+                      onClick={() => {
+                        setStatus("idle");
+                        setErrorMsg(null);
+                      }}
                       className={styles.successResetBtn}
                     >
                       OPEN NEW TRANSMISSION
@@ -126,6 +291,10 @@ export default function ContactPage() {
                           disabled={status === "transmitting"}
                         />
                       </div>
+                    </div>
+
+                    <div className={styles.formGroup} style={{ marginTop: "0.5rem", minHeight: "78px" }}>
+                      <div ref={recaptchaContainerRef} />
                     </div>
 
                     <button

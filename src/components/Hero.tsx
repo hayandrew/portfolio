@@ -37,7 +37,7 @@ export default function Hero({ section }: HeroProps) {
     }
   };
 
-  const { title, subtitle, color, glow } = getSectionDetails();
+  const { title, color, glow } = getSectionDetails();
 
   const renderBackgroundSVG = () => {
     switch (section) {
@@ -239,7 +239,6 @@ export default function Hero({ section }: HeroProps) {
         >
           {title}
         </h1>
-        {/* <p className={styles.subtitle}>{subtitle}</p> */}
       </div>
     </section>
   );

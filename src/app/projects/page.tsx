@@ -92,7 +92,7 @@ export default function ProjectsPage() {
             aria-label="Category Console Filter"
           >
             <span className={styles.filterLabel}>SELECT REPO_TYPE:</span>
-            {(["all", "web", "hardware", "library"] as const).map((filter) => (
+            {(["all", "web", "hardware"] as const).map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
