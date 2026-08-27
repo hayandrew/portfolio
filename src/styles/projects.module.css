@@ -1,0 +1,236 @@
+.projectsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Category Filter Console */
+.filterConsole {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem;
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.filterLabel {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 0.5rem;
+}
+
+.filterBtn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filterBtn:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.filterBtnActive {
+  background: var(--accent-cyan-dim);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  text-shadow: 0 0 5px var(--accent-cyan-glow);
+}
+
+/* Projects Grid */
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Project Card */
+.projectCard {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.projectCard::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 8px; height: 8px;
+  border-top: 2px solid transparent;
+  border-left: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.projectCard::after {
+  content: "";
+  position: absolute;
+  bottom: -1px; right: -1px;
+  width: 8px; height: 8px;
+  border-bottom: 2px solid transparent;
+  border-right: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+/* Color Coding Cards */
+.cardWeb:hover {
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.04);
+}
+.cardWeb:hover::before { border-top-color: var(--accent-cyan); border-left-color: var(--accent-cyan); }
+.cardWeb:hover::after { border-bottom-color: var(--accent-cyan); border-right-color: var(--accent-cyan); }
+
+.cardHw:hover {
+  border-color: rgba(255, 176, 0, 0.3);
+  box-shadow: 0 6px 20px rgba(255, 176, 0, 0.04);
+}
+.cardHw:hover::before { border-top-color: var(--accent-amber); border-left-color: var(--accent-amber); }
+.cardHw:hover::after { border-bottom-color: var(--accent-amber); border-right-color: var(--accent-amber); }
+
+.cardLib:hover {
+  border-color: rgba(0, 255, 102, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 255, 102, 0.04);
+}
+.cardLib:hover::before { border-top-color: var(--accent-green); border-left-color: var(--accent-green); }
+.cardLib:hover::after { border-bottom-color: var(--accent-green); border-right-color: var(--accent-green); }
+
+/* Card Elements */
+.cardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+.categoryTag {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.categoryWeb { color: var(--accent-cyan); border-color: rgba(0, 240, 255, 0.15); background: var(--accent-cyan-dim); }
+.categoryHw { color: var(--accent-amber); border-color: rgba(255, 176, 0, 0.15); background: var(--accent-amber-dim); }
+.categoryLib { color: var(--accent-green); border-color: rgba(0, 255, 102, 0.15); background: var(--accent-green-dim); }
+
+.projectTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: var(--font-mono);
+}
+
+.projectDesc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  height: 65px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.stackList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+}
+
+.stackTag {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+}
+
+.actionArea {
+  display: flex;
+  gap: 0.75rem;
+  border-top: 1px solid rgba(18, 24, 38, 0.5);
+  padding-top: 1rem;
+}
+
+.actionBtn {
+  flex: 1;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.45rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.actionBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.actionBtnPrimary {
+  background: var(--accent-cyan-dim);
+  border-color: rgba(0, 240, 255, 0.3);
+  color: var(--accent-cyan);
+}
+
+.actionBtnPrimary:hover {
+  background: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  color: #000000;
+  font-weight: 700;
+}
+
+/* Status Bar Styles */
+.statusBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-green);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.statusDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: 0 0 8px var(--accent-green-glow);
+}
+

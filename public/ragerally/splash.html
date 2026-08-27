@@ -1,0 +1,52 @@
+<html>
+<head>
+    <title>On the Range, a political shooting game</title>
+    <link rel="stylesheet" type="text/css" href="dist/style.css" />
+</head>
+<body style="background-color: #000;">
+<script src="jquery/jquery-2.2.2.min.js"></script>
+<script src="pixijs/pixi.min.js"></script>
+<script src="game/ontherange.js"></script>
+<script src="game/controls.js"></script>
+<script src="game/assets.js"></script>
+<script>
+    $(document).ready(function () {
+        function stopIntro () {
+            var intro = document.getElementById('intro');
+            intro.volume=.1;
+            intro.pause();
+        }
+
+        function playGame () {
+            var play = document.getElementById('play');
+            play.play();
+        }
+
+        $('.play').on('click', function (e) {
+            e.preventDefault();
+            stopIntro();
+            playGame();
+            setTimeout(function () {
+                window.location.href="/ontherange/";
+            }, 1500);
+        });
+    });
+</script>
+
+<audio id="intro" src="resources/audio/tds-ending-credits.ogg" preload="auto" autoplay loop></audio>
+<audio id="play" src="resources/audio/trevor-noah-hoo-ha-hoo-ha.ogg" preload="auto"></audio>
+<div class="wrapper">
+    <div class="content">
+        <div class="logo">
+            GIANT LOGO HERE?
+        </div>
+        <div class="option">
+            <a class="play" href="#">Play</a>
+        </div>
+        <div class="option">
+            <a class="credits" href="/ontherange/credits.html">Credits</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

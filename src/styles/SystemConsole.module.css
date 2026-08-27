@@ -1,0 +1,182 @@
+/* Floating System Console FAB */
+.consoleLaunchBtnFloating {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 99;
+  background: var(--accent-green-dim);
+  border: 1px solid rgba(0, 255, 102, 0.3);
+  color: var(--accent-green);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.consoleLaunchBtnFloating:hover {
+  background: var(--accent-green);
+  color: #000000;
+  box-shadow: 0 0 15px var(--accent-green-glow);
+  border-color: var(--accent-green);
+  transform: translateY(-2px);
+}
+
+.terminalIcon {
+  font-weight: bold;
+}
+
+.btnText {
+  font-weight: normal;
+}
+
+/* Console Overlay Modal */
+.consoleOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.25s ease-out;
+}
+
+.consoleModalContent {
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.consoleCloseBtn {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+  transition: color 0.2s;
+}
+
+.consoleCloseBtn:hover {
+  color: var(--accent-red);
+}
+
+/* Terminal Widget */
+.terminalContainer {
+  background: #000000;
+  border: 1px solid rgba(0, 255, 102, 0.2);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+}
+
+.terminalHeader {
+  background: #080c14;
+  border-bottom: 1px solid rgba(0, 255, 102, 0.15);
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.terminalTitle {
+  font-size: 0.75rem;
+  color: var(--accent-green);
+  text-shadow: 0 0 5px var(--accent-green-glow);
+  letter-spacing: 0.05em;
+}
+
+.terminalControls {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dotRed {
+  background: var(--accent-red);
+}
+.dotYellow {
+  background: var(--accent-amber);
+}
+.dotGreen {
+  background: var(--accent-green);
+}
+
+.terminalBody {
+  padding: 1.5rem;
+  height: 350px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--accent-green);
+  background-image: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+}
+
+.logEntry {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.terminalInputLine {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.prompt {
+  color: var(--accent-green);
+  user-select: none;
+}
+
+.inputField {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  flex: 1;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

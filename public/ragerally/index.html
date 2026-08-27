@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Rage Rally with Trevor Noah</title>
+	<meta name="author" content="" />
+	<meta name="description" content="Make your opponents wet." />
+	<meta name="keywords"  content="" />
+	<meta name="Resource-type" content="Document" />
+
+
+	<link rel="stylesheet" type="text/css" href="dist/jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="dist/examples.css" />
+    <link rel="stylesheet" type="text/css" href="dist/style.css" />
+
+
+	<style>
+
+		/* Sections
+		 * --------------------------------------- */
+		#section0 img,
+		#section1 img{
+			margin: 20px 0 0 0;
+		}
+		#section2 img{
+			margin: 20px 0 0 52px;
+		}
+		#section3 img{
+			bottom: 0px;
+			position: absolute;
+			margin-left: -420px;
+		}
+		.intro p{
+			width: 50%;
+			margin: 0 auto;
+			font-size: 1.5em;
+		}
+		.twitter-share-button{
+			position: absolute;
+			z-index: 99;
+			right: 149px;
+			top: 9px;
+		}
+
+	</style>
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
+    <script src="jquery/jquery-2.2.2.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+    <script src="pixijs/pixi.min.js"></script>
+    <script src="game/ontherange.js"></script>
+    <script src="game/controls.js"></script>
+    <script src="game/assets.js"></script>
+
+	<script type="text/javascript" src="dist/jquery.fullPage.js"></script>
+	<script type="text/javascript" src="dist/examples.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+            window.candidate = '';
+            $('.candidate').on('click', function() {
+                window.candidate = this.id;
+                $('#candidate-slide-inner').attr('class','').addClass(window.candidate);
+                $.fn.fullpage.moveSlideRight();
+            });
+			$('#fullpage').fullpage({
+				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+				//anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+				//menu: '#menu',
+				scrollingSpeed: 1000
+			});
+
+            $('#clinton').on('mouseover', function () {
+                var audio = document.getElementById('hillary');
+                audio.play();
+            });
+
+            $('#sanders').on('mouseover', function () {
+                var audio = document.getElementById('bernie');
+                audio.play();
+            });
+
+            $('#cruz').on('mouseover', function () {
+                var audio = document.getElementById('ted');
+                audio.play();
+            });
+
+            $('#kasich').on('mouseover', function () {
+                var audio = document.getElementById('john');
+                audio.play();
+            });
+
+            $('#trump').on('mouseover', function () {
+                var audio = document.getElementById('donald');
+                audio.play();
+            });
+
+            function stopIntro () {
+                var intro = document.getElementById('intro');
+                intro.volume=.025;
+                intro.pause();
+            }
+
+            function playGame () {
+                var play = document.getElementById('play');
+                play.play();
+            }
+
+            function fadeIntro () {
+                var intro = document.getElementById('intro');
+                intro.volume=0.1;
+            }
+
+            $('.start').on('click', function() {
+                $.fn.fullpage.moveSlideRight();
+                fadeIntro();
+            });
+
+            $('.goback').on('click', function() {
+                $.fn.fullpage.moveSlideLeft();
+            });
+
+            $('.play').on('click', function (e) {
+                if(window.candidate == null) {
+                    //scroll to candidate choice
+                    return;
+                }
+                e.preventDefault();
+                stopIntro();
+                playGame();
+                setTimeout(function () {
+                    window.location.href="game.html?candidate="+window.candidate;
+                }, 1500);
+            });
+		});
+	</script>
+
+</head>
+<body>
+<audio id="intro" src="resources/audio/tds-ending-credits.ogg" preload="auto" autoplay loop></audio>
+<audio id="play" src="resources/audio/trevor-noah-hoo-ha-hoo-ha.ogg" preload="auto"></audio>
+<audio id="hillary" src="resources/audio/hillary-clinton-shot-miss-laughing.ogg" preload="auto"></audio>
+<audio id="bernie" src="resources/audio/bernie-sanders-shot-miss-enough-with-the-hellos-lets-do-this.ogg" preload="auto"></audio>
+<audio id="ted" src="resources/audio/ted-cruz-shot-miss-it-is-now-or-never.ogg" preload="auto"></audio>
+<audio id="john" src="resources/audio/john-kasich-shot-hit-i-will-be-a-winner-regardless-of-what-happens.ogg" preload="auto"></audio>
+<audio id="donald" src="resources/audio/donald-trump-what-kind-of-people-do-i-have-here.ogg" preload="auto"></audio>
+
+<div id="fullpage">
+	<div class="section" id="section1">
+	    <div class="slide" id="hero_image">
+            <div class="wrapper">
+                <div class="content">
+                    <div class="start button">Start</div>
+                    <!--<div class="credits">Credits</div>-->
+                </div>
+            </div>
+		</div>
+	    <div class="slide">
+			<h1>Choose Your Candidate</h1>
+            <div class="candidate" id="clinton"></div>
+            <div class="candidate" id="sanders"></div>
+            <div class="candidate" id="cruz"></div><br/>
+            <div class="candidate" id="kasich"></div>
+            <div class="candidate" id="trump"></div>
+            <div class="goback">Go Back</div>
+		</div>
+	    <div class="slide" id="candidate-slide">
+            <div id="candidate-slide-inner">
+                <div class="candidate-snippet candidate-clinton" style="display:none">
+                    <h1>You chose Hillary Clinton.</h1>
+                    <img src="resources/bodies/clinton.png"/>
+                </div>
+                <div class="candidate-snippet candidate-cruz" style="display:none">
+                    <h1>You chose Ted Cruz.</h1>
+                    <img src="resources/bodies/cruz.png"/>
+                </div>
+                <div class="candidate-snippet candidate-sanders" style="display:none">
+                    <h1>You chose Bernie Sanders.</h1>
+                    <img src="resources/bodies/sanders.png"/>
+                </div>
+                <div class="candidate-snippet candidate-kasich" style="display:none">
+                    <h1>You chose John Kasich.</h1>
+                    <img src="resources/bodies/kasich.png"/>
+                </div>
+                <div class="candidate-snippet candidate-trump" style="display:none">
+                    <h1>You chose Donald Trump.</h1>
+                    <img src="resources/bodies/trump.png"/>
+                </div>
+            </div>
+            <div class="play-buttons">
+                <div class="goback">Go Back</div>
+                <div class="play button">Play</div>
+            </div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

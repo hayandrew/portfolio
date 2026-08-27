@@ -1,0 +1,243 @@
+.aboutContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profileSection {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .profileSection {
+    grid-template-columns: 300px 1fr;
+  }
+}
+
+/* Dossier Card */
+.dossierCard {
+  background: var(--bg-panel);
+  border: 1px solid rgba(0, 255, 102, 0.15);
+  border-radius: 6px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.dossierCard::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 10px; height: 10px;
+  border-top: 2.5px solid var(--accent-green);
+  border-left: 2.5px solid var(--accent-green);
+}
+
+.dossierCard::after {
+  content: "";
+  position: absolute;
+  bottom: -1px; right: -1px;
+  width: 10px; height: 10px;
+  border-bottom: 2.5px solid var(--accent-green);
+  border-right: 2.5px solid var(--accent-green);
+}
+
+.avatarContainer {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #000;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatarGrid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 255, 102, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 102, 0.05) 1px, transparent 1px);
+  background-size: 15px 15px;
+}
+
+.avatarFallback {
+  color: var(--accent-green);
+  font-size: 2.5rem;
+  font-family: var(--font-mono);
+  z-index: 1;
+  text-shadow: 0 0 10px var(--accent-green-glow);
+}
+
+.dossierMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.metaRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-bottom: 1px solid rgba(18, 24, 38, 0.5);
+  padding-bottom: 0.5rem;
+}
+
+.metaLabel {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metaValue {
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  color: #ffffff;
+}
+
+/* Console Bio Panel */
+.bioPanel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bioHeading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+.bioText {
+  font-family: var(--font-copse);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.bioText strong {
+  color: #ffffff;
+}
+
+/* Skills Matrix */
+.skillsSection {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.skillGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skillGroupTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--accent-green);
+  text-shadow: 0 0 5px var(--accent-green-glow);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(0, 255, 102, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.skillItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skillHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+}
+
+.skillName {
+  color: #ffffff;
+}
+
+.skillPercent {
+  color: var(--text-secondary);
+}
+
+.progressBarTrack {
+  height: 6px;
+  background: #090e1a;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: var(--accent-green);
+  box-shadow: 0 0 8px var(--accent-green-glow);
+  border-radius: 1px;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.statusBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent-green);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.statusDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: 0 0 8px var(--accent-green-glow);
+}
+
+.skillsHeading {
+  font-size: 1.25rem;
+}
+
+.bioParagraph {
+  margin-bottom: 1rem;
+}
+
+.skillGroupList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
