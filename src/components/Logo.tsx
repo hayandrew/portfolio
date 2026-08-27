@@ -215,7 +215,15 @@ function animateElementScale(
   el._activeAnimId = requestAnimationFrame(step);
 }
 
-export default function Logo({ onReady }: { onReady?: () => void } = {}) {
+export default function Logo({
+  onReady,
+  scaleMultiplier = 1,
+  className,
+}: {
+  onReady?: () => void;
+  scaleMultiplier?: number;
+  className?: string;
+} = {}) {
   const containerRef = useRef<HTMLUListElement>(null);
   const shadowsRef = useRef<HTMLUListElement>(null);
   const outlineRef = useRef<HTMLDivElement>(null);
@@ -271,7 +279,7 @@ export default function Logo({ onReady }: { onReady?: () => void } = {}) {
           const targetScale = (0.75 * screenWidth) / baseWidth;
 
           // Apply bounds to keep the scale reasonable (min 0.4, max 1.3 for max height of 65px)
-          scale = Math.max(0.4, Math.min(1.3, targetScale));
+          scale = Math.max(0.4, Math.min(1.3, targetScale)) * scaleMultiplier;
 
           for (let i = 0, l = LETTERS.length; i < l; i++) {
             count =
@@ -417,7 +425,7 @@ export default function Logo({ onReady }: { onReady?: () => void } = {}) {
           const targetScale = (0.75 * screenWidth) / baseWidth;
 
           // Apply bounds to keep the scale reasonable (min 0.4, max 1.3 for max height of 65px)
-          scale = Math.max(0.4, Math.min(1.3, targetScale));
+          scale = Math.max(0.4, Math.min(1.3, targetScale)) * scaleMultiplier;
 
           const lettersElements = container.querySelectorAll(".letters");
           const shadowElements = shadows ? shadows.querySelectorAll(".letters") : null;
@@ -760,19 +768,20 @@ export default function Logo({ onReady }: { onReady?: () => void } = {}) {
           el.removeEventListener("mouseenter", listener);
         });
       };
-    } catch (err: any) {
+    } catch (err) {
       console.error(err);
+      const errorObj = err instanceof Error ? err : new Error(String(err));
       if (typeof window !== "undefined") {
         alert(
-          "Error in Logo useEffect: " + err.message + "\nStack: " + err.stack,
+          "Error in Logo useEffect: " + errorObj.message + "\nStack: " + errorObj.stack,
         );
       }
       return () => {};
     }
-  }, []);
+  }, [scaleMultiplier, onReady]);
 
   return (
-    <div className="logoContainer">
+    <div className={`logoContainer ${className || ""}`}>
       {/* <div className="logo-outline" ref={outlineRef}></div> */}
       <ul className="logo" ref={containerRef}></ul>
       <ul className="shadows" ref={shadowsRef}></ul>

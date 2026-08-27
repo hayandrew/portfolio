@@ -101,7 +101,7 @@
 
 .terminalInput {
   width: 100%;
-  background: #04060a;
+  background: #031a18;
   border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 0.75rem 1rem 0.75rem 2rem;
@@ -208,8 +208,10 @@
 .nodesCard::before {
   content: "";
   position: absolute;
-  top: -1px; left: -1px;
-  width: 6px; height: 6px;
+  top: -1px;
+  left: -1px;
+  width: 6px;
+  height: 6px;
   border-top: 1.5px solid var(--accent-green);
   border-left: 1.5px solid var(--accent-green);
 }
@@ -238,7 +240,7 @@
   padding: 0.5rem;
   border: 1px solid rgba(18, 24, 38, 0.5);
   border-radius: 4px;
-  background: #04060a;
+  background: #031a18;
   transition: all 0.2s;
 }
 
@@ -321,4 +323,3 @@
   flex-direction: column;
   gap: 1.25rem;
 }
-

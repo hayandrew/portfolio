@@ -4,9 +4,9 @@ import { describe, expect, it } from "vitest";
 import ExperiencePage from "./page";
 
 describe("ExperiencePage Component", () => {
-  it("renders Hero component", () => {
-    render(<ExperiencePage />);
-    expect(screen.getByRole("heading", { name: "EXPERIENCE" })).toBeInTheDocument();
+  it("renders experience container", () => {
+    const { container } = render(<ExperiencePage />);
+    expect(container.querySelector('[class*="experienceContainer"]')).toBeInTheDocument();
   });
 
   it("renders all timeline experience cards with their company details", () => {

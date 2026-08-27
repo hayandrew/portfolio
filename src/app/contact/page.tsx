@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import styles from "@/styles/contact.module.css";
-import Hero from "@/components/Hero";
 
 export default function ContactPage() {
   const [senderName, setSenderName] = useState("");
@@ -28,11 +27,9 @@ export default function ContactPage() {
   };
 
   return (
-    <>
-      <Hero section="contact" />
-      <div className="page-container" style={{ paddingTop: 0 }}>
-        <div className="content-wrapper">
-          <div className={styles.contactContainer}>
+    <div className="page-container">
+      <div className="content-wrapper">
+        <div className={styles.contactContainer}>
           <div className={styles.gridSection}>
             {/* Message Dispatch Terminal (Left Column) */}
             <section
@@ -156,7 +153,7 @@ export default function ContactPage() {
               aria-label="Connection Streams"
             >
               <div className={styles.nodesCard}>
-                <h2 className={styles.nodesCardTitle}>ACTIVE_COMM_NODES</h2>
+                <h2 className={styles.nodesCardTitle}>LINKS</h2>
 
                 <div className={styles.nodeList}>
                   <a href="mailto:andy@andyhay.com" className={styles.nodeLink}>
@@ -259,6 +256,5 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
-  </>
-);
+  );
 }

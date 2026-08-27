@@ -6,7 +6,6 @@ import ContactPage from "./page";
 describe("ContactPage Component", () => {
   it("renders status bar and transmission console labels", () => {
     render(<ContactPage />);
-    expect(screen.getByRole("heading", { name: "CONTACT ME" })).toBeInTheDocument();
     expect(screen.getByText("MESSAGE TRANSMISSION CONSOLE")).toBeInTheDocument();
     expect(screen.getByLabelText(/sender_id/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/route_path/i)).toBeInTheDocument();
@@ -71,7 +70,7 @@ describe("ContactPage Component", () => {
 
   it("renders connection nodes sidebar panel links", () => {
     render(<ContactPage />);
-    expect(screen.getByRole("heading", { level: 2, name: "ACTIVE_COMM_NODES" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2, name: "LINKS" })).toBeInTheDocument();
     expect(screen.getByText("EMAIL")).toBeInTheDocument();
     expect(screen.getByText("andy@andyhay.com")).toBeInTheDocument();
     expect(screen.getByText("LINKEDIN")).toBeInTheDocument();

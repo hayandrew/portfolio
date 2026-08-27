@@ -13,28 +13,24 @@ export default function Hero({ section }: HeroProps) {
       case "about":
         return {
           title: "ABOUT ME",
-          subtitle: "System Node: Biometric & Technical Specs",
           color: "var(--accent-amber)",
           glow: "var(--accent-amber-glow)",
         };
       case "experience":
         return {
           title: "EXPERIENCE",
-          subtitle: "System History: Professional Chronology",
           color: "var(--accent-green)",
           glow: "var(--accent-green-glow)",
         };
       case "projects":
         return {
           title: "LABS",
-          subtitle: "System Showcase: Open Source & Hardware Nodes",
           color: "var(--accent-cyan)",
           glow: "var(--accent-cyan-glow)",
         };
       case "contact":
         return {
           title: "CONTACT ME",
-          subtitle: "System Channels: Direct Payload Dispatch",
           color: "var(--accent-pink)",
           glow: "var(--accent-pink-glow)",
         };

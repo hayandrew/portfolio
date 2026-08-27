@@ -25,7 +25,9 @@ export default function HomePage() {
 
   return (
     <div
-      className={`page-container ${styles.homePage}`}
+      className={`page-container home-page-container ${styles.homePage} ${
+        !isLogoReady ? "home-page-loading" : ""
+      }`}
       style={{ paddingTop: 0 }}
     >
       <div className="content-wrapper">
@@ -40,16 +42,16 @@ export default function HomePage() {
             >
               SOFTWARE ENGINEERING LEADER_
             </div>
+          </div>
 
-            {/* Loader displayed during Logo zoom-in */}
-            <div
-              className={`${styles.loader} ${
-                isLogoReady ? styles.loaderFadeOut : ""
-              }`}
-            >
-              <span className={styles.loaderText}>INITIALIZING SYSTEM_</span>
-              <div className={styles.loaderBar}></div>
-            </div>
+          {/* Loader displayed during Logo zoom-in */}
+          <div
+            className={`${styles.loader} ${
+              isLogoReady ? styles.loaderFadeOut : ""
+            }`}
+          >
+            <span className={styles.loaderText}>INITIALIZING SYSTEM_</span>
+            <div className={styles.loaderBar}></div>
           </div>
 
           {/* Stacked Menu Items */}
@@ -67,8 +69,8 @@ export default function HomePage() {
               <div className={styles.menuLabel}>EXPERIENCE_</div>
             </Link>
 
-            <Link href="/labs" className={styles.stackedMenuItem}>
-              <div className={styles.menuLabel}>LABS_</div>
+            <Link href="/projects" className={styles.stackedMenuItem}>
+              <div className={styles.menuLabel}>PROJECTS_</div>
             </Link>
 
             <Link href="/contact" className={styles.stackedMenuItem}>

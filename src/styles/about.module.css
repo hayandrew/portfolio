@@ -171,41 +171,24 @@
 
 .skillItem {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-direction: row;
+  align-items: center;
+  font-size: 0.85rem;
 }
 
-.skillHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
+.skillPrompt {
+  color: var(--accent-green);
+  text-shadow: 0 0 5px var(--accent-green-glow);
   font-family: var(--font-mono);
+  margin-right: 0.5rem;
+  user-select: none;
 }
 
 .skillName {
   color: #ffffff;
 }
 
-.skillPercent {
-  color: var(--text-secondary);
-}
 
-.progressBarTrack {
-  height: 6px;
-  background: #090e1a;
-  border: 1px solid var(--border-color);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.progressBarFill {
-  height: 100%;
-  background: var(--accent-green);
-  box-shadow: 0 0 8px var(--accent-green-glow);
-  border-radius: 1px;
-  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
 
 .statusBar {
   display: flex;

@@ -6,8 +6,7 @@ import AboutPage from "./page";
 describe("AboutPage Component", () => {
   it("renders status bar and main headings", () => {
     render(<AboutPage />);
-    expect(screen.getByRole("heading", { name: "ABOUT ME" })).toBeInTheDocument();
-    expect(screen.getByText("SYSTEM_BIO_DATA")).toBeInTheDocument();
+    expect(screen.getByText("ABOUT ME_")).toBeInTheDocument();
     expect(screen.getByText("SKILLS_RATING_MATRIX")).toBeInTheDocument();
   });
 
@@ -34,23 +33,5 @@ describe("AboutPage Component", () => {
     expect(screen.getByText("Hardware & IoT Integrations")).toBeInTheDocument();
     expect(screen.getByText("ESP32 / ESP8266 Microcontrollers")).toBeInTheDocument();
     expect(screen.getByText("C++ / Arduino IDE / PlatformIO")).toBeInTheDocument();
-  });
-
-  it("triggers animation changes for skill progress bars on mount", () => {
-    vi.useFakeTimers();
-    const { container } = render(<AboutPage />);
-
-    // Initially progress bars width should be 0% before animation state resolves
-    const progressFill = container.querySelector('[class*="progressBarFill"]') as HTMLElement;
-    expect(progressFill?.style.width).toBe("0%");
-
-    // Fast-forward animation timer
-    act(() => {
-      vi.advanceTimersByTime(160);
-    });
-
-    // Width should now match the actual level of React / React 19 (95%)
-    expect(progressFill?.style.width).toBe("95%");
-    vi.useRealTimers();
   });
 });

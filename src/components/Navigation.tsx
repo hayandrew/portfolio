@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "@/styles/navigation.module.css";
+import Logo from "./Logo";
 
 interface MenuItem {
   label: string;
@@ -71,8 +72,8 @@ const menuItems: MenuItem[] = [
     ),
   },
   {
-    label: "labs",
-    path: "/labs",
+    label: "projects",
+    path: "/projects",
     icon: (
       <svg
         className="w-4 h-4 mr-2"
@@ -187,10 +188,7 @@ export default function Navigation() {
         className={styles.logoLink}
         aria-label="Andy Hay Portfolio Home"
       >
-        <span className={styles.logoTitle}>ANDY HAY</span>
-        <span className={styles.logoSubtitle}>
-          &gt; SOFTWARE ENGINEERING LEADER_
-        </span>
+        <Logo scaleMultiplier={0.5} className={styles.headerLogo} />
       </Link>
 
       {/* Desktop Navigation Menu */}

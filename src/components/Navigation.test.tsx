@@ -8,12 +8,11 @@ import { usePathname } from "next/navigation";
 // We can override it in individual tests if needed.
 
 describe("Navigation Component", () => {
-  it("renders logo link and title", () => {
-    render(<Navigation />);
+  it("renders logo link and logo component", () => {
+    const { container } = render(<Navigation />);
     const logoLink = screen.getByRole("link", { name: /andy hay portfolio home/i });
     expect(logoLink).toBeInTheDocument();
-    expect(screen.getByText("ANDY HAY")).toBeInTheDocument();
-    expect(screen.getByText("> SOFTWARE ENGINEERING LEADER_")).toBeInTheDocument();
+    expect(container.querySelector(".logoContainer")).toBeInTheDocument();
   });
 
   it("renders all navigation items on sub-pages (desktop and mobile)", () => {
