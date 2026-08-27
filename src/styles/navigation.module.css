@@ -4,8 +4,7 @@
   left: 0;
   width: 100%;
   height: var(--header-height);
-  /* background: #031a18; */
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-color);
   z-index: 999;
