@@ -243,7 +243,7 @@ export default function Logo() {
       let winHeight = window.innerHeight;
       let touchy = 0;
       const topPos = 0;
-      let scale = 1.5;
+      let scale = 2;
 
       // Event listener declarations for safe cleanup
       let handleTouchStart: ((event: TouchEvent) => void) | null = null;
@@ -260,11 +260,18 @@ export default function Logo() {
           let width = 0;
           const glow = 10;
 
-          // Dynamically compute scale on mobile to fit the viewport width
+          // Calculate the base width of the logo (with scale = 1)
+          let baseWidth = 0;
+          for (let i = 0, l = LETTERS.length; i < l; i++) {
+            baseWidth += LETTERS[i].w - LETTERS[i].xOff;
+          }
+
+          // Dynamically compute scale so that the logo width is 75% of the screen width
           const screenWidth = window.innerWidth || 375;
-          scale = mobile
-            ? Math.max(0.4, Math.min(1, (screenWidth - 32) / 358))
-            : 1;
+          const targetScale = (0.75 * screenWidth) / baseWidth;
+
+          // Apply bounds to keep the scale reasonable (min 0.4, max 1.3 for max height of 65px)
+          scale = Math.max(0.4, Math.min(1.3, targetScale));
 
           for (let i = 0, l = LETTERS.length; i < l; i++) {
             count =
@@ -360,6 +367,10 @@ export default function Logo() {
           container.style.transform = "translateX(-50%) scale(1)";
           container.style.opacity = "1";
 
+          if (container.parentElement) {
+            container.parentElement.style.height = scale * 50 + "px";
+          }
+
           if (shadows) {
             shadows.style.width = width + "px";
             shadows.style.transform = "translateX(-50%) scale(1)";
@@ -401,6 +412,62 @@ export default function Logo() {
           }
         },
 
+        resizeLogo: function (): void {
+          let count = 0;
+          let width = 0;
+
+          // Calculate the base width of the logo (with scale = 1)
+          let baseWidth = 0;
+          for (let i = 0, l = LETTERS.length; i < l; i++) {
+            baseWidth += LETTERS[i].w - LETTERS[i].xOff;
+          }
+
+          // Dynamically compute scale so that the logo width is 75% of the screen width
+          const screenWidth = window.innerWidth || 375;
+          const targetScale = (0.75 * screenWidth) / baseWidth;
+
+          // Apply bounds to keep the scale reasonable (min 0.4, max 1.3 for max height of 65px)
+          scale = Math.max(0.4, Math.min(1.3, targetScale));
+
+          const lettersElements = container.querySelectorAll(".letters");
+
+          for (let i = 0, l = LETTERS.length; i < l; i++) {
+            count =
+              i === 0
+                ? 0
+                : count + scale * LETTERS[i - 1].w - scale * LETTERS[i].xOff;
+            width += scale * LETTERS[i].w - scale * LETTERS[i].xOff;
+
+            const li = lettersElements[i] as HTMLLIElement;
+            if (!li) continue;
+
+            li.style.left = count + "px";
+            li.style.top = topPos + scale * LETTERS[i].yOff + "px";
+
+            const svgEl = li.querySelector("svg");
+            if (svgEl) {
+              const svgW = scale * LETTERS[i].w + LETTERS[i].xOff;
+              const svgH = scale * LETTERS[i].h + LETTERS[i].yOff;
+              svgEl.setAttribute("width", String(svgW));
+              svgEl.setAttribute("height", String(svgH));
+              svgEl.setAttribute("viewBox", `0 0 ${svgW} ${svgH}`);
+
+              const pathEl = svgEl.querySelector("path");
+              if (pathEl) {
+                pathEl.setAttribute("transform", "scale(" + scale + ")");
+              }
+            }
+          }
+
+          container.style.width = width + "px";
+          if (container.parentElement) {
+            container.parentElement.style.height = scale * 50 + "px";
+          }
+
+          // Re-initialize calculated letter coordinates so interaction boundary checks remain accurate!
+          this.initPositions();
+        },
+
         animateLetter: function (
           li: LogoPosition,
           reset?: boolean,
@@ -416,7 +483,7 @@ export default function Logo() {
               const durationDown = 500;
               animateElementScale(
                 li.node,
-                1,
+                4,
                 1.4,
                 durationUp,
                 easeOutBounce,
@@ -424,7 +491,7 @@ export default function Logo() {
                   animateElementScale(
                     li.node,
                     1.4,
-                    1,
+                    4,
                     durationDown,
                     easeOutElastic,
                     () => {
@@ -527,6 +594,7 @@ export default function Logo() {
             });
 
             handleOrientationChange = () => {
+              this.resizeLogo();
               for (let i = 0; i < positions.length; i++) {
                 if (positions[i].state === 1) {
                   this.animateLetter(positions[i], true);
@@ -538,6 +606,11 @@ export default function Logo() {
               handleOrientationChange,
               false,
             );
+
+            handleResize = () => {
+              this.resizeLogo();
+            };
+            window.addEventListener("resize", handleResize);
           } else {
             let timer: ReturnType<typeof setTimeout> | null = null;
             winHeight = window.innerHeight;
@@ -565,6 +638,9 @@ export default function Logo() {
               }
               timer = setTimeout(() => {
                 winHeight = window.innerHeight;
+
+                // Recalculate dynamic logo scale and width on resize
+                this.resizeLogo();
 
                 const easing =
                   _winHeight > winHeight ? "easeOutElastic" : "easeOutBounce";

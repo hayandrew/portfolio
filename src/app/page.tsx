@@ -38,6 +38,35 @@ export default function HomePage() {
             <Link href="/contact" className={styles.stackedMenuItem}>
               <div className={styles.menuLabel}>CONTACT_</div>
             </Link>
+
+            <div className={styles.menuDivider}></div>
+
+            <div className={styles.socialRow}>
+              <a
+                href="https://www.linkedin.com/in/andyhaynyc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+              >
+                LINKEDIN
+              </a>
+              <a
+                href="https://github.com/hayandrew"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+              >
+                GITHUB
+              </a>
+              <a
+                href="https://www.youtube.com/@ANDYvsMACHINE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+              >
+                YOUTUBE
+              </a>
+            </div>
           </nav>
         </div>
       </div>

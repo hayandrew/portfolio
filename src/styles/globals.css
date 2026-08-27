@@ -274,6 +274,7 @@ footer a:hover {
   position: relative;
   width: 100%;
   height: 70px;
+  margin-bottom: 1rem;
 }
 
 .logo,
@@ -287,7 +288,9 @@ footer a:hover {
   list-style: none;
   display: block;
   opacity: 0;
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .logo {

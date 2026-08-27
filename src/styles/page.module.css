@@ -488,3 +488,40 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.menuDivider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0.15) 80%,
+    transparent
+  );
+  width: 100%;
+  margin: 1rem 0 0 0;
+  opacity: 0.8;
+}
+
+.socialRow {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.socialLink {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 8px var(--accent-cyan-glow);
+}
