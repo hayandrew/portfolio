@@ -261,6 +261,7 @@ export default function Logo({
       let handleResize: (() => void) | null = null;
       const handleMouseEnters: Array<{ el: Element; listener: () => void }> =
         [];
+      let animTimeout: ReturnType<typeof setTimeout> | null = null;
 
       const logoObj = {
         init: function (): void {
@@ -375,12 +376,13 @@ export default function Logo({
             logoOutline.style.top = topPos + "px";
           }
 
-          this.bindEvents();
           this.initPositions();
 
-          setTimeout(() => {
+          animTimeout = setTimeout(() => {
+            this.initPositions();
+            this.bindEvents();
             if (onReady) onReady();
-          }, 1200);
+          }, 500);
         },
 
         registerPositions: function (li: LogoPosition): void {
@@ -428,7 +430,9 @@ export default function Logo({
           scale = Math.max(0.4, Math.min(1.3, targetScale)) * scaleMultiplier;
 
           const lettersElements = container.querySelectorAll(".letters");
-          const shadowElements = shadows ? shadows.querySelectorAll(".letters") : null;
+          const shadowElements = shadows
+            ? shadows.querySelectorAll(".letters")
+            : null;
 
           for (let i = 0, l = LETTERS.length; i < l; i++) {
             count =
@@ -457,7 +461,9 @@ export default function Logo({
               }
             }
 
-            const shadowli = shadowElements ? (shadowElements[i] as HTMLLIElement) : null;
+            const shadowli = shadowElements
+              ? (shadowElements[i] as HTMLLIElement)
+              : null;
             if (shadowli) {
               shadowli.style.left = count + "px";
               shadowli.style.top = topPos + scale * LETTERS[i].yOff + "px";
@@ -472,7 +478,10 @@ export default function Logo({
 
                 const shadowPathEl = shadowSvgEl.querySelector("path");
                 if (shadowPathEl) {
-                  shadowPathEl.setAttribute("transform", "scale(" + scale + ")");
+                  shadowPathEl.setAttribute(
+                    "transform",
+                    "scale(" + scale + ")",
+                  );
                 }
               }
             }
@@ -746,6 +755,9 @@ export default function Logo({
 
       // Clean up event listeners on unmount to avoid memory leaks
       return () => {
+        if (animTimeout) {
+          clearTimeout(animTimeout);
+        }
         if (handleTouchStart && container) {
           container.removeEventListener("touchstart", handleTouchStart);
         }
@@ -773,7 +785,10 @@ export default function Logo({
       const errorObj = err instanceof Error ? err : new Error(String(err));
       if (typeof window !== "undefined") {
         alert(
-          "Error in Logo useEffect: " + errorObj.message + "\nStack: " + errorObj.stack,
+          "Error in Logo useEffect: " +
+            errorObj.message +
+            "\nStack: " +
+            errorObj.stack,
         );
       }
       return () => {};

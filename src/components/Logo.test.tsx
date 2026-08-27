@@ -58,16 +58,24 @@ describe("Logo Component", () => {
   });
 
   it("triggers hover/mouseenter animation in desktop view", () => {
+    vi.useFakeTimers();
     const { container } = render(<Logo />);
+
+    // Fast-forward 1200ms to bind events
+    act(() => {
+      vi.advanceTimersByTime(1200);
+    });
 
     const firstLetter = container.querySelector(".logo .letters");
     expect(firstLetter).toBeInTheDocument();
 
     // Trigger mouse enter
     fireEvent.mouseEnter(firstLetter!);
+    vi.useRealTimers();
   });
 
   it("attaches touch events in mobile view", () => {
+    vi.useFakeTimers();
     vi.spyOn(window, "innerWidth", "get").mockReturnValue(500);
     Object.defineProperty(window.navigator, "userAgent", {
       value: "Mobi",
@@ -79,6 +87,11 @@ describe("Logo Component", () => {
     const removeSpy = vi.spyOn(HTMLUListElement.prototype, "removeEventListener");
 
     const { unmount } = render(<Logo />);
+
+    // Fast-forward 1200ms to bind events
+    act(() => {
+      vi.advanceTimersByTime(1200);
+    });
 
     expect(addSpy).toHaveBeenCalledWith("touchstart", expect.any(Function), {
       passive: false,
@@ -95,11 +108,18 @@ describe("Logo Component", () => {
     expect(removeSpy).toHaveBeenCalledWith("touchstart", expect.any(Function));
     expect(removeSpy).toHaveBeenCalledWith("touchmove", expect.any(Function));
     expect(removeSpy).toHaveBeenCalledWith("touchend", expect.any(Function));
+
+    vi.useRealTimers();
   });
 
   it("supports window resize functionality in desktop view", () => {
     vi.useFakeTimers();
     render(<Logo />);
+
+    // Fast-forward 1200ms to bind events
+    act(() => {
+      vi.advanceTimersByTime(1200);
+    });
 
     const resizeEvent = new Event("resize");
 
