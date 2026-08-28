@@ -61,7 +61,7 @@ export default function ProjectsPage() {
         "Express",
         "Vitest",
       ],
-      codeLink: "https://github.com/hayandrew/earlthemonster",
+      codeLink: "https://github.com/hayandrew/portfolio",
     },
 
     {
@@ -81,8 +81,7 @@ export default function ProjectsPage() {
         "NodeJS",
         "Express",
       ],
-      codeLink: "https://github.com/hayandrew",
-      liveLink: "https://andyhay.com",
+      codeLink: "https://github.com/hayandrew/kwenchr",
     },
     {
       id: "project-4",
@@ -97,8 +96,7 @@ export default function ProjectsPage() {
         "NodeJS",
         "Express",
       ],
-      codeLink: "https://github.com/hayandrew",
-      liveLink: "https://andyhay.com",
+      codeLink: "https://github.com/hayandrew/realitystan",
     },
     {
       id: "project-5",
@@ -108,8 +106,7 @@ export default function ProjectsPage() {
       description:
         "I built a custom LED display matrix that uses a mic to visualize ambient sound.",
       technologies: ["C++", "ESP32", "Arduino", "Arduino IDE", "PlatformIO"],
-      codeLink: "https://github.com/hayandrew",
-      liveLink: "https://andyhay.com",
+      codeLink: "https://github.com/hayandrew/led-music-visualizer",
     },
     {
       id: "project-6",
@@ -119,8 +116,8 @@ export default function ProjectsPage() {
       description:
         "I gutted a broken handheld Tiger Baseball game and turned it into a modern handheld with an ESP32 and SPI display",
       technologies: ["C++", "ESP32", "Arduino", "Arduino IDE", "PlatformIO"],
-      codeLink: "https://github.com/hayandrew",
-      liveLink: "https://andyhay.com",
+      codeLink: "https://github.com/hayandrew/project-dugout",
+      liveLink: "https://www.youtube.com/watch?v=sPr2wZAA69U",
     },
   ];
 

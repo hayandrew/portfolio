@@ -21,7 +21,6 @@ const RECAPTCHA_SITE_KEY =
     ? process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY_DEV
     : process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY_PROD) || "";
 
-
 declare global {
   interface Window {
     grecaptcha?: {
@@ -163,7 +162,9 @@ export default function ContactPage() {
       setPayloadMessage("");
     } catch (err) {
       console.error("Form submission error:", err);
-      setErrorMsg(err instanceof Error ? err.message : "Failed to route transmission");
+      setErrorMsg(
+        err instanceof Error ? err.message : "Failed to route transmission",
+      );
       setStatus("idle");
       if (window.grecaptcha && widgetIdRef.current !== null) {
         window.grecaptcha.reset(widgetIdRef.current);
@@ -203,9 +204,7 @@ export default function ContactPage() {
                     <div className={styles.errorHeader}>
                       <span>[TRANSMISSION ERROR]</span>
                     </div>
-                    <div className={styles.errorDesc}>
-                      {errorMsg}
-                    </div>
+                    <div className={styles.errorDesc}>{errorMsg}</div>
                   </div>
                 )}
 
@@ -237,7 +236,7 @@ export default function ContactPage() {
                   >
                     <div className={styles.formGroup}>
                       <label htmlFor="name-input" className={styles.formLabel}>
-                        SENDER_ID (NAME):
+                        NAME:
                       </label>
                       <div className={styles.inputWrapper}>
                         <span className={styles.inputPrefix}>&gt;</span>
@@ -248,7 +247,7 @@ export default function ContactPage() {
                           value={senderName}
                           onChange={(e) => setSenderName(e.target.value)}
                           className={styles.terminalInput}
-                          placeholder="e.g. USER_01"
+                          placeholder="e.g. First Last"
                           disabled={status === "transmitting"}
                         />
                       </div>
@@ -256,7 +255,7 @@ export default function ContactPage() {
 
                     <div className={styles.formGroup}>
                       <label htmlFor="email-input" className={styles.formLabel}>
-                        ROUTE_PATH (EMAIL):
+                        EMAIL:
                       </label>
                       <div className={styles.inputWrapper}>
                         <span className={styles.inputPrefix}>&gt;</span>
@@ -278,7 +277,7 @@ export default function ContactPage() {
                         htmlFor="message-input"
                         className={styles.formLabel}
                       >
-                        TRANSMISSION_PAYLOAD (MESSAGE):
+                        MESSAGE:
                       </label>
                       <div className={styles.inputWrapper}>
                         <textarea
@@ -287,13 +286,16 @@ export default function ContactPage() {
                           value={payloadMessage}
                           onChange={(e) => setPayloadMessage(e.target.value)}
                           className={`${styles.terminalInput} ${styles.terminalTextarea}`}
-                          placeholder="Write your connection payload details here..."
+                          placeholder="Write your message here..."
                           disabled={status === "transmitting"}
                         />
                       </div>
                     </div>
 
-                    <div className={styles.formGroup} style={{ marginTop: "0.5rem", minHeight: "78px" }}>
+                    <div
+                      className={styles.formGroup}
+                      style={{ marginTop: "0.5rem", minHeight: "78px" }}
+                    >
                       <div ref={recaptchaContainerRef} />
                     </div>
 
@@ -309,7 +311,7 @@ export default function ContactPage() {
                     >
                       {status === "transmitting"
                         ? "TRANSMITTING DATA..."
-                        : "TRANSMIT PAYLOAD"}
+                        : "SEND"}
                     </button>
                   </form>
                 )}
@@ -325,30 +327,6 @@ export default function ContactPage() {
                 <h2 className={styles.nodesCardTitle}>LINKS</h2>
 
                 <div className={styles.nodeList}>
-                  <a href="mailto:andy@andyhay.com" className={styles.nodeLink}>
-                    <div className={styles.nodeIcon}>
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                    <div className={styles.nodeInfo}>
-                      <span className={styles.nodeName}>EMAIL</span>
-                      <span className={styles.nodeAddress}>
-                        andy@andyhay.com
-                      </span>
-                    </div>
-                  </a>
-
                   <a
                     href="https://www.linkedin.com/in/andyhaynyc/"
                     target="_blank"
