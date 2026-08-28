@@ -29,15 +29,17 @@ export default function ExperiencePage() {
         "Drive workflow optimization across engineering, improving delivery speed and team efficiency through cross-functional partnerships.",
       ],
       technologies: [
-        "Next.js",
-        "React 19",
-        "TypeScript",
-        "Performance",
-        "WebPack",
-        "Node.js",
-        "React Testing Library",
-        "GitHub",
-        "Agile",
+        "Business Strategy",
+        "Team Building",
+        "Hiring & Interviewing",
+        "Performance Management",
+        "Cross Functional Collaboration",
+        "Mentorship",
+        "Stakeholder Management",
+        "Agile / Scrum Methodologies",
+        "Roadmap Planning & Prioritization",
+        "Budget Management",
+        "Vendor Management",
       ],
     },
     {
@@ -49,18 +51,24 @@ export default function ExperiencePage() {
       description:
         "Led development of a full OTT platform experience including authentication, subscriptions, user profiles, playback, and personalized content.",
       bullets: [
+        "Built and maintained a scalable Node.js SSR framework supporting multi-tenant configurations.",
         "Delivered end-to-end user journeys across account creation, sign-in, subscription management, billing, and content discovery.",
         "Built key engagement features including Continue Watching, Watchlist, search, and dynamic content carousels.",
         "Developed a full-featured user settings SPA supporting payment management, plan changes, cancellations, and billing history.",
         "Implemented multi-tier subscription models, coupon systems, and partner/TVE subscription integrations.",
+        "Implemented kid profiles and parental PIN controls for family-safe experiences.",
+        "Supported multi-device experiences, including second-screen activation flows and client-side personalization.",
       ],
       technologies: [
         "Next.js",
-        "React 19",
+        "React",
         "TypeScript",
         "Performance",
         "WebPack",
         "Node.js",
+        "React Testing Library",
+        "GitHub",
+        "Agile / Scrum",
       ],
     },
     {
@@ -70,20 +78,19 @@ export default function ExperiencePage() {
       period: "2014 - 2018",
       category: "web",
       description:
-        "Architected a hybrid SSR + client-rendered React application to balance SEO and authenticated user experiences.",
+        "Build user experiences for MTV Artists platform--the 'IMDB' for musicians. The platform served as a one-stop shop for all things related to MTV's music artists, including bios, photos, videos, music, social media, and tour dates.",
       bullets: [
-        "Designed routing strategy separating SEO pages from authenticated experiences.",
-        "Built and maintained a scalable Node.js SSR framework supporting multi-tenant configurations.",
-        "Implemented kid profiles and parental PIN controls for family-safe experiences.",
-        "Supported multi-device experiences, including second-screen activation flows and client-side personalization.",
+        "Built and maintained interactive and scalable artist pages for the MTV Artists platform",
+        "Developed performance improvements to the platform, improving page load times and user engagement.",
+        "Collaborated with design teams to create visually stunning and user-friendly interfaces",
       ],
       technologies: [
-        "Next.js",
-        "React 19",
-        "TypeScript",
+        "Vanilla Javascript",
+        "CSS Modules",
         "Performance",
-        "WebPack",
-        "Node.js",
+        "Agile / Scrum",
+        "Atlassian Suite",
+        "Stash",
       ],
     },
     {
@@ -99,7 +106,13 @@ export default function ExperiencePage() {
         "Developed modular AngularJS components reused across multiple platforms.",
         "Delivered hybrid mobile web applications with responsive design systems.",
       ],
-      technologies: ["Go", "Node.js", "WebSockets", "PostgreSQL", "Prisma"],
+      technologies: [
+        "AngularJS",
+        "CSS Modules",
+        "Performance",
+        "Agile / Scrum",
+        "Atlassian Suite",
+      ],
     },
     {
       id: "role-5",
@@ -110,17 +123,17 @@ export default function ExperiencePage() {
       description:
         "Led design and frontend teams in delivering large-scale publishing platforms, early mobile experiences, and custom digital solutions for enterprise clients like IBM, Intel, and Dell.",
       bullets: [
-        "Directed front-end engineering teams in high-traffic publishing environments.",
+        "Directed front-end engineering teams in high-traffic publishing environments including eWEEK and Business Insider.",
         "Spearheaded early mobile-optimized web versions for major publications.",
-        "Delivered custom landing page templates and advertising integrations.",
+        "Delivered reusable landing page templates and advertising integrations.",
+        "Developed custom Adobe Flash animations for ad placements.",
+        "Built a custom CMS for CIO Insights, enabling editorial teams to manage their content more effectively.",
       ],
       technologies: [
-        "C++",
-        "Arduino",
-        "ESP32",
-        "I2C",
-        "WebSockets",
-        "Hardware",
+        "Vanilla Javascript",
+        "CSS Modules",
+        "Performance",
+        "Adobe Flash",
       ],
     },
   ];
@@ -195,10 +208,12 @@ export default function ExperiencePage() {
                 <div
                   key={role.id}
                   className={`${styles.timelineItem} ${sideClass}`}
-                  style={{
-                    "--category-accent": accentColor,
-                    "--category-accent-glow": accentGlow,
-                  } as React.CSSProperties}
+                  style={
+                    {
+                      "--category-accent": accentColor,
+                      "--category-accent-glow": accentGlow,
+                    } as React.CSSProperties
+                  }
                 >
                   {/* Timeline dot */}
                   <div className={styles.timelineNode} />

@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import styles from "@/styles/projects.module.css";
 
 interface Project {
   id: string;
   title: string;
-  category: "web" | "esp32" | "library";
+  category: "web" | "esp32";
   categoryLabel: string;
   description: string;
   technologies: string[];
@@ -63,7 +64,6 @@ export default function ProjectsPage() {
       ],
       codeLink: "https://github.com/hayandrew/portfolio",
     },
-
     {
       id: "project-3",
       title: "Kwenchr",
@@ -90,11 +90,12 @@ export default function ProjectsPage() {
       categoryLabel: "Web",
       description: "A big brother and Survivor game tracking tool.",
       technologies: [
-        "CSS Grid",
-        "Animations",
-        "CSS Modules",
         "NodeJS",
+        "React 19",
+        "NextJS",
         "Express",
+        "MongoDB",
+        "Vercel",
       ],
       codeLink: "https://github.com/hayandrew/realitystan",
     },
@@ -105,7 +106,15 @@ export default function ProjectsPage() {
       categoryLabel: "ESP32",
       description:
         "I built a custom LED display matrix that uses a mic to visualize ambient sound.",
-      technologies: ["C++", "ESP32", "Arduino", "Arduino IDE", "PlatformIO"],
+      technologies: [
+        "C++",
+        "ESP32",
+        "Arduino",
+        "Arduino IDE",
+        "PlatformIO",
+        "I2C/SPI",
+        "3D Modeling & Printing",
+      ],
       codeLink: "https://github.com/hayandrew/led-music-visualizer",
     },
     {
@@ -115,7 +124,15 @@ export default function ProjectsPage() {
       categoryLabel: "ESP32",
       description:
         "I gutted a broken handheld Tiger Baseball game and turned it into a modern handheld with an ESP32 and SPI display",
-      technologies: ["C++", "ESP32", "Arduino", "Arduino IDE", "PlatformIO"],
+      technologies: [
+        "C++",
+        "ESP32",
+        "Arduino",
+        "Arduino IDE",
+        "PlatformIO",
+        "I2C/SPI",
+        "3D Modeling & Printing",
+      ],
       codeLink: "https://github.com/hayandrew/project-dugout",
       liveLink: "https://www.youtube.com/watch?v=sPr2wZAA69U",
     },
@@ -145,6 +162,35 @@ export default function ProjectsPage() {
                 [{filter.toUpperCase()}]
               </button>
             ))}
+          </section>
+
+          {/* Hobby Projects Disclaimer Banner */}
+          <section
+            className={styles.disclaimerBanner}
+            aria-label="Hobby Projects Disclaimer"
+          >
+            <div className={styles.bannerImageContainer}>
+              <Image
+                src="/images/hobby_placeholder.jpg"
+                alt="Hobby Projects Illustration"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 320px"
+                className={styles.bannerImage}
+              />
+            </div>
+            <div className={styles.bannerContent}>
+              <h2 className={styles.bannerTitle}>
+                // HOBBY LABS & SIDE PROJECTS
+              </h2>
+              <p className={styles.bannerText}>
+                The projects cataloged below represent personal exploratory
+                work, hobby experiments, and sandbox prototypes created for
+                recreation, learning, or problem-solving. These initiatives are
+                entirely independent and do not constitute commercial client
+                work or professional employer product releases.
+              </p>
+            </div>
           </section>
 
           {/* Grid of Projects */}

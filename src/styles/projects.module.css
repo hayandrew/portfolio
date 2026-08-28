@@ -257,3 +257,66 @@
   background: var(--accent-green);
   box-shadow: 0 0 8px var(--accent-green-glow);
 }
+
+/* Disclaimer Banner */
+.disclaimerBanner {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .disclaimerBanner {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+.bannerImageContainer {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border: 1px solid rgba(0, 255, 102, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .bannerImageContainer {
+    width: 320px;
+    height: 180px;
+  }
+}
+
+.bannerImage {
+  object-fit: cover;
+}
+
+.bannerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bannerTitle {
+  font-size: 1.1rem;
+  font-family: var(--font-mono);
+  color: var(--accent-green);
+  text-shadow: 0 0 5px var(--accent-green-glow);
+  margin: 0;
+}
+
+.bannerText {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
