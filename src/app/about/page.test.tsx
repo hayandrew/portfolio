@@ -16,22 +16,21 @@ describe("AboutPage Component", () => {
     expect(screen.getByText("ANDY HAY")).toBeInTheDocument();
     expect(screen.getByText("DESIGNATION")).toBeInTheDocument();
     expect(screen.getByText("SOFTWARE ENGINEERING MANAGER")).toBeInTheDocument();
-    expect(screen.getByText("LOCATION NODE")).toBeInTheDocument();
+    expect(screen.getByText("LOCATION")).toBeInTheDocument();
     expect(screen.getByText("NEW YORK, NY")).toBeInTheDocument();
   });
 
   it("renders all skill category groupings and individual skills", () => {
     render(<AboutPage />);
+    expect(screen.getByText("Leadership & Strategy")).toBeInTheDocument();
+    expect(screen.getByText("Business Strategy")).toBeInTheDocument();
+
     expect(screen.getByText("Frontend Web Systems")).toBeInTheDocument();
     expect(screen.getByText("React / React 19")).toBeInTheDocument();
     expect(screen.getByText("Next.js / App Router")).toBeInTheDocument();
 
     expect(screen.getByText("Backend & Systems Architecture")).toBeInTheDocument();
     expect(screen.getByText("Node.js / Express / Fastify")).toBeInTheDocument();
-    expect(screen.getByText("Go / Rust (Systems Coding)")).toBeInTheDocument();
-
-    expect(screen.getByText("Hardware & IoT Integrations")).toBeInTheDocument();
-    expect(screen.getByText("ESP32 / ESP8266 Microcontrollers")).toBeInTheDocument();
-    expect(screen.getByText("C++ / Arduino IDE / PlatformIO")).toBeInTheDocument();
+    expect(screen.getByText("PHP / MySQL")).toBeInTheDocument();
   });
 });

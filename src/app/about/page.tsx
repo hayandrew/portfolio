@@ -10,30 +10,51 @@ interface SkillGroup {
 export default function AboutPage() {
   const skillGroups: SkillGroup[] = [
     {
+      category: "Leadership & Strategy",
+      skills: [
+        "Business Strategy",
+        "Team Building",
+        "Hiring & Interviewing",
+        "Performance Management",
+        "Cross Functional Collaboration",
+        "Mentorship",
+        "Stakeholder Management",
+        "Agile / Scrum Methodologies",
+        "Roadmap Planning & Prioritization",
+        "Budget Management",
+        "Vendor Management",
+      ],
+    },
+    {
       category: "Frontend Web Systems",
       skills: [
         "React / React 19",
         "Next.js / App Router",
         "TypeScript / JavaScript ESNext",
         "Vanilla CSS & Responsive Design",
+        "React Testing Library / Vitest",
+        "Web Performance Optimization",
+        "State Management",
+        "CSS Modules",
+        "Animations",
+        "SEO Fundamentals",
+        "Accessibility",
+        "Legal Compliance",
       ],
     },
     {
       category: "Backend & Systems Architecture",
       skills: [
         "Node.js / Express / Fastify",
-        "Go / Rust (Systems Coding)",
-        "PostgreSQL / Prisma ORM",
+        "PHP / MySQL",
+        "MongoDB / Mongoose",
         "REST APIs & WebSocket Systems",
-      ],
-    },
-    {
-      category: "Hardware & IoT Integrations",
-      skills: [
-        "ESP32 / ESP8266 Microcontrollers",
-        "C++ / Arduino IDE / PlatformIO",
-        "Serial Protocols (I2C, SPI, UART)",
-        "Firmware Optimization & Testing",
+        "Python",
+        "Integration Testing",
+        "CI/CD Pipelines",
+        "Docker",
+        "AWS Basics",
+        "GitHub Actions",
       ],
     },
   ];
@@ -73,12 +94,8 @@ export default function AboutPage() {
                   </span>
                 </div>
                 <div className={styles.metaRow}>
-                  <span className={styles.metaLabel}>LOCATION NODE</span>
+                  <span className={styles.metaLabel}>LOCATION </span>
                   <span className={styles.metaValue}>NEW YORK, NY</span>
-                </div>
-                <div className={styles.metaRow}>
-                  <span className={styles.metaLabel}>DEPLOYMENT</span>
-                  <span className={styles.metaValue}>ACTIVE / NOMINAL</span>
                 </div>
               </div>
             </section>
