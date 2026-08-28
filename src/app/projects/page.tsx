@@ -6,7 +6,7 @@ import styles from "@/styles/projects.module.css";
 interface Project {
   id: string;
   title: string;
-  category: "web" | "hardware" | "library";
+  category: "web" | "esp32" | "library";
   categoryLabel: string;
   description: string;
   technologies: string[];
@@ -15,7 +15,7 @@ interface Project {
 }
 
 export default function ProjectsPage() {
-  const [activeFilter, setActiveFilter] = useState<"all" | "web" | "hardware">(
+  const [activeFilter, setActiveFilter] = useState<"all" | "web" | "esp32">(
     "all",
   );
 
@@ -32,27 +32,15 @@ export default function ProjectsPage() {
       liveLink: "https://earlthemonster.com",
     },
     {
-      id: "project-3",
-      title: "LED Visualizer",
-      category: "hardware",
-      categoryLabel: "Hardware",
-      description:
-        "A utility package written in Rust/WebAssembly compiling telemetry byte arrays into unified JSON logs with sub-millisecond execution overhead.",
-      technologies: ["Rust", "WASM", "NPM", "Node.js", "Jest"],
-      codeLink: "https://github.com/hayandrew",
-      liveLink: "https://andyhay.com",
+      id: "project-6",
+      title: "Portfolio Site",
+      category: "web",
+      categoryLabel: "Web",
+      description: "This web site.",
+      technologies: ["C++", "Arduino", "ESP32", "SPI/I2C", "WebSockets"],
+      codeLink: "https://github.com/hayandrew/earlthemonster",
     },
-    {
-      id: "project-4",
-      title: "Project Dugout",
-      category: "hardware",
-      categoryLabel: "Hardware",
-      description:
-        "A client-side styling layout engine featuring custom retro grid-lines, glowing text modules, CRT scanline effects, and custom state controllers.",
-      technologies: ["React", "CSS Grid", "Animations", "Linting"],
-      codeLink: "https://github.com/hayandrew",
-      liveLink: "https://andyhay.com",
-    },
+
     {
       id: "project-5",
       title: "Kwenchr",
@@ -69,6 +57,28 @@ export default function ProjectsPage() {
       title: "Reality Stan",
       category: "web",
       categoryLabel: "Web",
+      description:
+        "A client-side styling layout engine featuring custom retro grid-lines, glowing text modules, CRT scanline effects, and custom state controllers.",
+      technologies: ["React", "CSS Grid", "Animations", "Linting"],
+      codeLink: "https://github.com/hayandrew",
+      liveLink: "https://andyhay.com",
+    },
+    {
+      id: "project-3",
+      title: "LED Visualizer",
+      category: "esp32",
+      categoryLabel: "ESP32",
+      description:
+        "A utility package written in Rust/WebAssembly compiling telemetry byte arrays into unified JSON logs with sub-millisecond execution overhead.",
+      technologies: ["Rust", "WASM", "NPM", "Node.js", "Jest"],
+      codeLink: "https://github.com/hayandrew",
+      liveLink: "https://andyhay.com",
+    },
+    {
+      id: "project-4",
+      title: "Project Dugout",
+      category: "esp32",
+      categoryLabel: "ESP32",
       description:
         "A client-side styling layout engine featuring custom retro grid-lines, glowing text modules, CRT scanline effects, and custom state controllers.",
       technologies: ["React", "CSS Grid", "Animations", "Linting"],
@@ -92,7 +102,7 @@ export default function ProjectsPage() {
             aria-label="Category Console Filter"
           >
             <span className={styles.filterLabel}>SELECT REPO_TYPE:</span>
-            {(["all", "web", "hardware"] as const).map((filter) => (
+            {(["all", "web", "esp32"] as const).map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
@@ -109,14 +119,14 @@ export default function ProjectsPage() {
               const cardColorClass =
                 project.category === "web"
                   ? styles.cardWeb
-                  : project.category === "hardware"
+                  : project.category === "esp32"
                     ? styles.cardHw
                     : styles.cardLib;
 
               const categoryClass =
                 project.category === "web"
                   ? styles.categoryWeb
-                  : project.category === "hardware"
+                  : project.category === "esp32"
                     ? styles.categoryHw
                     : styles.categoryLib;
 
@@ -153,7 +163,7 @@ export default function ProjectsPage() {
                         className={styles.actionBtn}
                         aria-label={`View source code for ${project.title}`}
                       >
-                        SOURCE_CODE
+                        REPO
                       </a>
                     )}
                     {project.liveLink && (
@@ -164,7 +174,7 @@ export default function ProjectsPage() {
                         className={`${styles.actionBtn} ${styles.actionBtnPrimary}`}
                         aria-label={`Open live demonstration for ${project.title}`}
                       >
-                        LIVE_NODE
+                        WEBSITE
                       </a>
                     )}
                   </div>
