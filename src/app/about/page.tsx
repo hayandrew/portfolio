@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import styles from "@/styles/about.module.css";
 
 interface SkillGroup {
@@ -48,6 +49,14 @@ export default function AboutPage() {
               aria-label="Biometric Dossier Card"
             >
               <div className={styles.avatarContainer}>
+                <Image
+                  src="/images/headshot.jpg"
+                  alt="Andy Hay"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 300px"
+                  className={styles.avatarImage}
+                />
                 <div className={styles.avatarGrid} />
                 <div className={styles.avatarFallback}>AH</div>
               </div>

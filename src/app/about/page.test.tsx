@@ -7,7 +7,7 @@ describe("AboutPage Component", () => {
   it("renders status bar and main headings", () => {
     render(<AboutPage />);
     expect(screen.getByText("ABOUT ME_")).toBeInTheDocument();
-    expect(screen.getByText("SKILLS_RATING_MATRIX")).toBeInTheDocument();
+    expect(screen.getByText("SKILLS")).toBeInTheDocument();
   });
 
   it("renders dossier metadata values", () => {
