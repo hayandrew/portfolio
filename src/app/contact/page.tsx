@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import styles from "@/styles/contact.module.css";
 
-// Determine environment and use appropriate keys (matching earlthemonster defaults)
+// Determine environment and use appropriate keys
 const isDevelopment =
   typeof window !== "undefined" &&
   (window.location.hostname === "localhost" ||
@@ -21,13 +21,17 @@ const RECAPTCHA_SITE_KEY =
     ? process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY_DEV
     : process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY_PROD) || "";
 
+// Logging utility
+const log = (message: string, data?: any) => {
+  if (isDevelopment) {
+    console.log(`[ContactForm] ${message}`, data || "");
+  }
+};
+
 declare global {
   interface Window {
     grecaptcha?: {
-      render: (
-        container: HTMLElement,
-        options: { sitekey: string; theme?: "light" | "dark" },
-      ) => number;
+      render: (container: HTMLElement, options: { sitekey: string }) => number;
       getResponse: (widgetId: number) => string;
       reset: (widgetId: number) => void;
     };
@@ -36,14 +40,14 @@ declare global {
 }
 
 export default function ContactPage() {
-  const [senderName, setSenderName] = useState("");
-  const [routeEmail, setRouteEmail] = useState("");
-  const [payloadMessage, setPayloadMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "transmitting" | "success">(
-    "idle",
-  );
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
-
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const pathname = usePathname();
   const recaptchaContainerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<number | null>(null);
@@ -51,6 +55,8 @@ export default function ContactPage() {
 
   useEffect(() => {
     const cleanupRecaptcha = () => {
+      log("Cleaning up reCAPTCHA");
+
       // Remove reCAPTCHA badge and iframes
       const recaptchaElements = document.querySelectorAll(
         '.grecaptcha-badge, iframe[src*="recaptcha"]',
@@ -69,18 +75,24 @@ export default function ContactPage() {
       widgetIdRef.current = null;
       window.grecaptcha = undefined;
       window.onRecaptchaLoad = undefined;
+      log("reCAPTCHA cleanup complete");
     };
 
     if (pathname === "/contact") {
       const loadRecaptcha = () => {
+        log("Loading reCAPTCHA...");
+
         // Don't load if already loaded
         if (window.grecaptcha || scriptRef.current) {
+          log("reCAPTCHA already loaded");
           return;
         }
 
         // Set up the callback for when reCAPTCHA is ready
         window.onRecaptchaLoad = () => {
-          // Only render if container exists and hasn't been rendered yet
+          log("reCAPTCHA loaded, attempting to render");
+
+          // Only render if we haven't already rendered and the container exists
           if (
             recaptchaContainerRef.current &&
             window.grecaptcha &&
@@ -91,11 +103,14 @@ export default function ContactPage() {
                 recaptchaContainerRef.current,
                 {
                   sitekey: RECAPTCHA_SITE_KEY,
-                  theme: "dark",
                 },
               );
+              log("reCAPTCHA rendered successfully", {
+                widgetId: widgetIdRef.current,
+              });
             } catch (error) {
               console.error("Error rendering reCAPTCHA:", error);
+              log("Error rendering reCAPTCHA", error);
             }
           }
         };
@@ -106,6 +121,7 @@ export default function ContactPage() {
         script.defer = true;
         document.body.appendChild(script);
         scriptRef.current = script;
+        log("reCAPTCHA script added to document");
       };
 
       loadRecaptcha();
@@ -113,30 +129,46 @@ export default function ContactPage() {
     }
   }, [pathname]);
 
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    log(`Form field updated: ${name}`, { length: value.length });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrorMsg(null);
-
-    if (!senderName || !routeEmail || !payloadMessage) return;
+    setError(null);
+    setSuccess(false);
+    log("Form submission started");
 
     if (!window.grecaptcha || widgetIdRef.current === null) {
-      setErrorMsg("reCAPTCHA loader not initialized.");
+      const error = "reCAPTCHA not loaded. Please try again.";
+      log("reCAPTCHA not loaded");
+      setError(error);
       return;
     }
 
     const token = window.grecaptcha.getResponse(widgetIdRef.current);
     if (!token) {
-      setErrorMsg("Please complete reCAPTCHA verification.");
+      const error = "Please complete the reCAPTCHA verification.";
+      log("reCAPTCHA not completed");
+      setError(error);
       return;
     }
 
-    setStatus("transmitting");
+    setLoading(true);
+    log("Form submission in progress");
 
     try {
       const form = new FormData();
-      form.append("name", senderName);
-      form.append("email", routeEmail);
-      form.append("message", payloadMessage);
+      form.append("name", formData.name);
+      form.append("email", formData.email);
+      form.append("message", formData.message);
       form.append("g-recaptcha-response", token);
 
       const response = await fetch("/api/contact", {
@@ -148,27 +180,34 @@ export default function ContactPage() {
       const contentType = response.headers.get("content-type");
       if (contentType && contentType.includes("application/json")) {
         data = await response.json();
+        log("Server response received", {
+          status: response.status,
+          success: data.success,
+          environment: data.environment,
+        });
       } else {
+        const text = await response.text();
+        log("Unexpected response format", { text });
         throw new Error("Server returned an invalid response");
       }
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to route transmission");
+        throw new Error(data.error || "Failed to send message");
       }
 
-      setStatus("success");
-      setSenderName("");
-      setRouteEmail("");
-      setPayloadMessage("");
+      setSuccess(true);
+      setFormData({ name: "", email: "", message: "" });
+      window.grecaptcha.reset(widgetIdRef.current);
+      log("Form submitted successfully");
     } catch (err) {
       console.error("Form submission error:", err);
-      setErrorMsg(
-        err instanceof Error ? err.message : "Failed to route transmission",
-      );
-      setStatus("idle");
+      log("Form submission failed", err);
+      setError(err instanceof Error ? err.message : "Failed to send message");
       if (window.grecaptcha && widgetIdRef.current !== null) {
         window.grecaptcha.reset(widgetIdRef.current);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -189,9 +228,9 @@ export default function ContactPage() {
                 <div className={styles.terminalStatus}>
                   <div className={styles.statusIndicator} />
                   <span>
-                    {status === "transmitting"
+                    {loading
                       ? "DISPATCHING PAYLOAD..."
-                      : status === "success"
+                      : success
                         ? "TRANSMISSION NOMINAL"
                         : "DISPATCHER READY"}
                   </span>
@@ -199,16 +238,16 @@ export default function ContactPage() {
               </div>
 
               <div className={styles.terminalFormBody}>
-                {errorMsg && (
+                {error && (
                   <div className={styles.errorPanel}>
                     <div className={styles.errorHeader}>
                       <span>[TRANSMISSION ERROR]</span>
                     </div>
-                    <div className={styles.errorDesc}>{errorMsg}</div>
+                    <div className={styles.errorDesc}>{error}</div>
                   </div>
                 )}
 
-                {status === "success" && (
+                {success && (
                   <div className={styles.successPanel}>
                     <div className={styles.successHeader}>
                       <span>[TRANSMISSION SUCCESSFUL]</span>
@@ -219,8 +258,8 @@ export default function ContactPage() {
                     </div>
                     <button
                       onClick={() => {
-                        setStatus("idle");
-                        setErrorMsg(null);
+                        setSuccess(false);
+                        setError(null);
                       }}
                       className={styles.successResetBtn}
                     >
@@ -229,7 +268,7 @@ export default function ContactPage() {
                   </div>
                 )}
 
-                {status !== "success" && (
+                {!success && (
                   <form
                     onSubmit={handleSubmit}
                     className={styles.transmissionForm}
@@ -243,12 +282,13 @@ export default function ContactPage() {
                         <input
                           type="text"
                           id="name-input"
+                          name="name"
                           required
-                          value={senderName}
-                          onChange={(e) => setSenderName(e.target.value)}
+                          value={formData.name}
+                          onChange={handleChange}
                           className={styles.terminalInput}
                           placeholder="e.g. First Last"
-                          disabled={status === "transmitting"}
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -262,12 +302,13 @@ export default function ContactPage() {
                         <input
                           type="email"
                           id="email-input"
+                          name="email"
                           required
-                          value={routeEmail}
-                          onChange={(e) => setRouteEmail(e.target.value)}
+                          value={formData.email}
+                          onChange={handleChange}
                           className={styles.terminalInput}
                           placeholder="e.g. user@example.com"
-                          disabled={status === "transmitting"}
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -282,12 +323,13 @@ export default function ContactPage() {
                       <div className={styles.inputWrapper}>
                         <textarea
                           id="message-input"
+                          name="message"
                           required
-                          value={payloadMessage}
-                          onChange={(e) => setPayloadMessage(e.target.value)}
+                          value={formData.message}
+                          onChange={handleChange}
                           className={`${styles.terminalInput} ${styles.terminalTextarea}`}
                           placeholder="Write your message here..."
-                          disabled={status === "transmitting"}
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -303,15 +345,13 @@ export default function ContactPage() {
                       type="submit"
                       className={styles.transmitBtn}
                       disabled={
-                        status === "transmitting" ||
-                        !senderName ||
-                        !routeEmail ||
-                        !payloadMessage
+                        loading ||
+                        !formData.name ||
+                        !formData.email ||
+                        !formData.message
                       }
                     >
-                      {status === "transmitting"
-                        ? "TRANSMITTING DATA..."
-                        : "SEND"}
+                      {loading ? "TRANSMITTING DATA..." : "SEND"}
                     </button>
                   </form>
                 )}

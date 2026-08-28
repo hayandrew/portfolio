@@ -23,7 +23,7 @@ describe("Navigation Component", () => {
     expect(homeLinks.length).toBe(2); // Logo link and mobile home link
     expect(screen.getAllByRole("link", { name: /about/i }).length).toBe(2);
     expect(screen.getAllByRole("link", { name: /experience/i }).length).toBe(2);
-    expect(screen.getAllByRole("link", { name: /labs/i }).length).toBe(2);
+    expect(screen.getAllByRole("link", { name: /projects/i }).length).toBe(2);
     expect(screen.getAllByRole("link", { name: /contact/i }).length).toBe(2);
   });
 
@@ -35,7 +35,7 @@ describe("Navigation Component", () => {
     expect(homeLinks.length).toBe(2); // Logo link and mobile home link
     expect(screen.getAllByRole("link", { name: /about/i }).length).toBe(1); // Mobile only
     expect(screen.getAllByRole("link", { name: /experience/i }).length).toBe(1);
-    expect(screen.getAllByRole("link", { name: /labs/i }).length).toBe(1);
+    expect(screen.getAllByRole("link", { name: /projects/i }).length).toBe(1);
     expect(screen.getAllByRole("link", { name: /contact/i }).length).toBe(1);
   });
 

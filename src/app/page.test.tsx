@@ -14,7 +14,7 @@ describe("HomePage Component", () => {
     render(<HomePage />);
     expect(screen.getByText("ABOUT_")).toBeInTheDocument();
     expect(screen.getByText("EXPERIENCE_")).toBeInTheDocument();
-    expect(screen.getByText("LABS_")).toBeInTheDocument();
+    expect(screen.getByText("PROJECTS_")).toBeInTheDocument();
     expect(screen.getByText("CONTACT_")).toBeInTheDocument();
   });
 });
