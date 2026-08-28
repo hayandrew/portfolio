@@ -89,7 +89,7 @@ export default function AboutPage() {
                 <div className={styles.metaRow}>
                   <span className={styles.metaLabel}>DESIGNATION</span>
                   <span className={styles.metaValue}>
-                    SOFTWARE ENGINEERING MANAGER
+                    SOFTWARE ENGINEERING LEADER
                   </span>
                 </div>
                 <div className={styles.metaRow}>
