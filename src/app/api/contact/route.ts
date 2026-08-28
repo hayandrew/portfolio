@@ -93,7 +93,7 @@ export async function POST(request: Request) {
       name: err.name,
       message: err.message,
       stack: err.stack,
-      ...(err as Record<string, unknown>),
+      ...(err as unknown as Record<string, unknown>),
     } : err;
 
     console.error('[Contact API] Error processing contact submission:', errorDetails);
