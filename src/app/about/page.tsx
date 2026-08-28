@@ -78,7 +78,6 @@ export default function AboutPage() {
                   sizes="(max-width: 768px) 100vw, 300px"
                   className={styles.avatarImage}
                 />
-                <div className={styles.avatarGrid} />
                 <div className={styles.avatarFallback}>AH</div>
               </div>
 

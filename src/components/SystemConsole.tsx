@@ -86,25 +86,25 @@ export default function SystemConsole() {
         break;
       case "about":
         newLogs.push({
-          text: `DOSSIER PROFILE: ANDY HAY\nROLE: Senior Software Engineer\nSPECIALTY: Full Stack Web Architecture & Embedded IoT Systems\nMISSION: Designing resilient, high-performance user interfaces and distributed systems.`,
+          text: `DOSSIER PROFILE: ANDY HAY\nROLE: Software Engineering Manager\nLOCATION: New York, NY\nBIO: Engineering leader with 10+ years experience building consumer products at scale. Specializes in streaming architecture, full-stack React/Node, and high-performance product teams.`,
           type: "output",
         });
         break;
       case "experience":
         newLogs.push({
-          text: `TIMELINE OVERVIEW:\n  2024 - Present: Senior Software Engineer (Company A)\n  2021 - 2024: Software Engineer II (Company B)\n  2019 - 2021: Junior Developer (Company C)\nUse top navigation to inspect the interactive Experience timeline.`,
+          text: `TIMELINE OVERVIEW:\n  2022 - 2026: Software Engineering Manager (Paramount Skydance Corporation)\n  2018 - 2022: Lead Software Engineer (ViacomCBS)\n  2014 - 2018: Senior Software Engineer (Viacom, Inc.)\n  2011 - 2014: Senior Software Engineer (Backbase)\n  2006 - 2011: Director, Front-end Development (Ziff Davis Enterprise)\nUse top navigation to inspect the career timeline.`,
           type: "output",
         });
         break;
       case "projects":
         newLogs.push({
-          text: `PORTFOLIO HIGHLIGHTS:\n  * Project Alpha - High-performance Next.js Web App\n  * Project Beta - ESP32 IoT Hardware hacking\n  * Project Gamma - Open source NPM package utility\nUse top navigation to view full Projects gallery.`,
+          text: `PORTFOLIO HIGHLIGHTS:\n  * Earl the Monster - Children's book interactive brand site\n  * Portfolio Site   - This responsive portfolio site\n  * Kwenchr          - Location-aware happy hour finder app\n  * Reality Stan     - Survivor & Big Brother tracking application\n  * LED Visualizer   - Ambient audio reactive display matrix (ESP32)\n  * Project Dugout   - Retro Tiger game conversion with SPI/ESP32\nUse top navigation to view the full Projects gallery.`,
           type: "output",
         });
         break;
       case "contact":
         newLogs.push({
-          text: `ROUTING CHANNELS:\n  Email: hello@example.com\n  GitHub: github.com/hayandrew\n  LinkedIn: linkedin.com/in/andyhaynyc\nUse top navigation or click Contact page to transmit a direct message.`,
+          text: `ROUTING CHANNELS:\n  LinkedIn: linkedin.com/in/andyhaynyc\n  GitHub:   github.com/hayandrew\n  YouTube:  youtube.com/@ANDYvsMACHINE\nUse top navigation or click Contact page to transmit a direct message.`,
           type: "output",
         });
         break;
