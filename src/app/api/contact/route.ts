@@ -16,14 +16,11 @@ function isValidEmail(email: string): boolean {
 
 export async function POST(request: Request) {
   const host = request.headers.get('host');
-  const ip = getClientIp(request);
-  console.log(`[Contact API] Received submission request. Host: "${host}", IP: "${ip}"`);
 
   let formData: FormData;
   try {
     formData = await request.formData();
-  } catch (err) {
-    console.error('[Contact API] Failed to parse form data:', err);
+  } catch {
     return NextResponse.json({ error: 'No form data received' }, { status: 400 });
   }
 
@@ -33,70 +30,44 @@ export async function POST(request: Request) {
   const recaptchaToken =
     (formData.get('g-recaptcha-response') as string | null)?.trim() ?? '';
 
-  console.log('[Contact API] Form payload received:', {
-    hasName: Boolean(name),
-    emailProvided: email,
-    messageLength: message.length,
-    hasRecaptchaToken: Boolean(recaptchaToken),
-    tokenLength: recaptchaToken.length,
-  });
-
   if (!name || !email || !message) {
-    console.warn('[Contact API] Missing required form fields');
     return NextResponse.json({ error: 'All fields are required' }, { status: 400 });
   }
 
   if (!isValidEmail(email)) {
-    console.warn(`[Contact API] Invalid email provided: "${email}"`);
     return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
   }
 
   if (!recaptchaToken) {
-    console.warn('[Contact API] Missing reCAPTCHA token in form submission');
     return NextResponse.json({ error: 'reCAPTCHA verification is required' }, { status: 400 });
   }
 
   try {
-    console.log('[Contact API] Verifying reCAPTCHA token with Google...');
-    const recaptcha = await verifyRecaptcha(recaptchaToken, host, ip);
+    const recaptcha = await verifyRecaptcha(recaptchaToken, host, getClientIp(request));
 
     if (!recaptcha.success) {
-      console.error('[Contact API] reCAPTCHA verification failed:', {
-        errorCodes: recaptcha.errorCodes,
-        host,
-      });
+      console.error('reCAPTCHA verification failed:', recaptcha.errorCodes);
       return NextResponse.json(
         { error: 'reCAPTCHA verification failed. Please try again.' },
         { status: 400 }
       );
     }
-    console.log('[Contact API] reCAPTCHA verification succeeded');
 
-    console.log('[Contact API] Sending contact emails via SMTP...');
     await sendContactEmails({ name, email, message }, host);
-    console.log('[Contact API] Contact emails sent successfully');
 
     return NextResponse.json({
       success: true,
       message: 'Message sent successfully',
     });
-  } catch (err: unknown) {
+  } catch (err) {
     if (err instanceof Error && err.message === 'Failed to verify reCAPTCHA') {
-      console.error('[Contact API] reCAPTCHA verification endpoint error:', err);
       return NextResponse.json(
         { error: 'Failed to verify reCAPTCHA. Please try again.' },
         { status: 500 }
       );
     }
 
-    const errorDetails = err instanceof Error ? {
-      name: err.name,
-      message: err.message,
-      stack: err.stack,
-      ...(err as unknown as Record<string, unknown>),
-    } : err;
-
-    console.error('[Contact API] Error processing contact submission:', errorDetails);
+    console.error('Contact form error:', err);
     return NextResponse.json(
       { error: 'Failed to send message. Please try again.' },
       { status: 500 }
@@ -107,4 +78,3 @@ export async function POST(request: Request) {
 export async function OPTIONS() {
   return new NextResponse(null, { status: 200 });
 }
-
