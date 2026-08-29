@@ -6,7 +6,7 @@ interface JobRole {
   title: string;
   company: string;
   period: string;
-  category: "web" | "hardware" | "systems";
+  category: "cyan" | "amber" | "green";
   description: string;
   bullets?: string[];
   technologies: string[];
@@ -19,7 +19,7 @@ export default function ExperiencePage() {
       title: "Software Engineering Manager",
       company: "Paramount Skydance Corporation",
       period: "2022 - 2026",
-      category: "web",
+      category: "amber",
       description:
         "Lead engineering efforts for the BET+ streaming platform (3.5M+ users) across web and connected experiences.",
       bullets: [
@@ -47,7 +47,7 @@ export default function ExperiencePage() {
       title: "Lead Software Engineer",
       company: "ViacomCBS",
       period: "2018 - 2022",
-      category: "web",
+      category: "green",
       description:
         "Led development of a full OTT platform experience including authentication, subscriptions, user profiles, playback, and personalized content.",
       bullets: [
@@ -80,7 +80,7 @@ export default function ExperiencePage() {
       title: "Senior Software Engineer",
       company: "Viacom, Inc.",
       period: "2014 - 2018",
-      category: "web",
+      category: "cyan",
       description:
         "Build user experiences for MTV Artists platform--the 'IMDB' for musicians. The platform served as a one-stop shop for all things related to MTV's music artists, including bios, photos, videos, music, social media, and tour dates.",
       bullets: [
@@ -102,7 +102,7 @@ export default function ExperiencePage() {
       title: "Senior Software Engineer",
       company: "Backbase",
       period: "2011 - 2014",
-      category: "systems",
+      category: "amber",
       description:
         "Collaborated across international teams to build dynamic enterprise portals, reusable UI component libraries, and responsive, hybrid mobile applications using AngularJS.",
       bullets: [
@@ -123,7 +123,7 @@ export default function ExperiencePage() {
       title: "Director, Front-end Development",
       company: "Ziff Davis Enterprise",
       period: "2006 - 2011",
-      category: "hardware",
+      category: "green",
       description:
         "Led design and frontend teams in delivering large-scale publishing platforms, early mobile experiences, and custom digital solutions for enterprise clients like IBM, Intel, and Dell.",
       bullets: [
@@ -195,16 +195,16 @@ export default function ExperiencePage() {
                   : styles.timelineItemRight;
 
               const accentColor =
-                role.category === "web"
+                role.category === "cyan"
                   ? "var(--accent-cyan)"
-                  : role.category === "hardware"
+                  : role.category === "amber"
                     ? "var(--accent-amber)"
                     : "var(--accent-green)";
 
               const accentGlow =
-                role.category === "web"
+                role.category === "cyan"
                   ? "var(--accent-cyan-glow)"
-                  : role.category === "hardware"
+                  : role.category === "amber"
                     ? "var(--accent-amber-glow)"
                     : "var(--accent-green-glow)";
 

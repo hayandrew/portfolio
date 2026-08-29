@@ -183,14 +183,14 @@ export default function ProjectsPage() {
             </div>
             <div className={styles.bannerContent}>
               <h2 className={styles.bannerTitle}>
-                // HOBBY LABS & SIDE PROJECTS
+                HOBBY LABS & SIDE PROJECTS_
               </h2>
               <p className={styles.bannerText}>
-                The projects cataloged below represent personal exploratory
-                work, hobby experiments, and sandbox prototypes created for
-                recreation, learning, or problem-solving. These initiatives are
-                entirely independent and do not constitute commercial client
-                work or professional employer product releases.
+                The projects below represent personal exploratory work, hobby
+                experiments, and sandbox prototypes created for recreation,
+                learning, or problem-solving. These initiatives are entirely
+                independent and do not constitute commercial client work or
+                professional employer product releases.
               </p>
             </div>
           </section>
