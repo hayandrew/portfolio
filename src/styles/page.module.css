@@ -349,15 +349,13 @@
   position: relative;
   background: transparent;
   border: none;
-}
-
-.stackedMenuItem:hover {
-  transform: translateY(-2px);
+  line-height: 1.5em;
 }
 
 .stackedMenuItem:hover .menuLabel {
   color: var(--accent-cyan);
   text-shadow: 0 0 10px var(--accent-cyan-glow);
+  font-size: 1.35rem;
 }
 
 .menuIndex {
@@ -372,6 +370,7 @@
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .menuArrow {
@@ -501,7 +500,7 @@
     transparent
   );
   width: 100%;
-  margin: 1rem 0 0 0;
+  margin: 1.3rem 0 0 0;
   opacity: 0.8;
 }
 
