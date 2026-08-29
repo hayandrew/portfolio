@@ -82,6 +82,7 @@ export default function ProjectsPage() {
         "Express",
       ],
       codeLink: "https://github.com/hayandrew/kwenchr",
+      liveLink: "https://kwenchr.com",
     },
     {
       id: "project-4",
@@ -98,6 +99,7 @@ export default function ProjectsPage() {
         "Vercel",
       ],
       codeLink: "https://github.com/hayandrew/realitystan",
+      liveLink: "https://realitystan.com",
     },
     {
       id: "project-5",
@@ -219,7 +221,6 @@ export default function ProjectsPage() {
                     <span className={`${styles.categoryTag} ${categoryClass}`}>
                       {project.categoryLabel}
                     </span>
-                    <span>ONLINE // NOMINAL</span>
                   </div>
 
                   <h3 className={styles.projectTitle}>{project.title}</h3>
