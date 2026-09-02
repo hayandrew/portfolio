@@ -379,6 +379,8 @@ export default function Logo({
           this.initPositions();
 
           animTimeout = setTimeout(() => {
+            container.classList.add("logoReady");
+            if (shadows) shadows.classList.add("logoReady");
             this.initPositions();
             this.bindEvents();
             if (onReady) onReady();

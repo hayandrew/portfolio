@@ -33,19 +33,22 @@
   transition: opacity 0.2s ease;
 }
 
-.logoLink:hover {
-  opacity: 0.85;
-}
-
 .headerLogo {
   margin: 0 !important;
   width: 100% !important;
+  min-height: unset !important;
 }
 
 .headerLogo :global(.logo),
-.headerLogo :global(.shadows) {
+.headerLogo :global(.shadows),
+.headerLogo :global(.logo.logoReady),
+.headerLogo :global(.shadows.logoReady) {
+  position: absolute !important;
   left: 0 !important;
+  top: 0 !important;
   transform: scale(1) !important;
+  margin: 0 !important;
+  opacity: 1 !important;
 }
 
 .logoTitle {

@@ -25,9 +25,7 @@ export default function HomePage() {
 
   return (
     <div
-      className={`page-container home-page-container ${styles.homePage} ${
-        !isLogoReady ? "home-page-loading" : ""
-      }`}
+      className={`page-container home-page-container ${styles.homePage}`}
       style={{ paddingTop: 0 }}
     >
       <div className="content-wrapper">
